@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    <!-- the page title goes here -->
+    <h3>Books sorted by {{ genre }}</h3>
+{% endblock %}
+
+{% block content %}
+    <!-- content specific to this page goes here -->
+    {% for b in books_by_genre %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            {{ b.title }}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Author: {{ b.author }}</li>
+            <li class="list-group-item">Genre: {{ b.genre }}</li>
+            <li class="list-group-item">Release Year: {{ b.release_year }}</li>
+            <li class="list-group-item">Number in inventory: {{ b.quantity }}</li>
+        </ul>
+    </div>
+    <br>
+    {% endfor %}
+{% endblock %}
