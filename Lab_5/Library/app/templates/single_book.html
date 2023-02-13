@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    <!-- the page title goes here -->
+    <h3>Single book view</h3>
+{% endblock %}
+
+{% block content %}
+    <!-- content specific to this page goes here -->
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            {{ book.title }}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Author: {{ book.author }}</li>
+            <li class="list-group-item">Genre: {{ book.genre }}</li>
+            <li class="list-group-item">Release Year: {{ book.release_year }}</li>
+            <li class="list-group-item">Number in inventory: {{ book.quantity }}</li
+        </ul>
+    </div>
+
+    <br>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Borrowed by:
+        </div>
+        <ul class="list-group list-group-flush">
+        {% for b in borrowed_by %}
+            <li class="list-group-item">{{ b.customer.name }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+   
+{% endblock %}

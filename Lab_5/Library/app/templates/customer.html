@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+    <!-- the page title goes here -->
+    <h3>{{ customer.name }} info</h3>
+{% endblock %}
+
+{% block content %}
+    <!-- content specific to this page goes here -->
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Currently borrowing:
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for b in borrowing %}
+            <li class="list-group-item">"{{ b.book.title }}" - return by {{ b.return_date }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <br>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Has returned:
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for b in returned %}
+            {% if b.is_returned == True %}
+            <li class="list-group-item">"{{ b.book.title }}" - return by {{ b.return_date }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
