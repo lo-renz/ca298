@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import *
 
 # Create your models here.
 class PizzaOrder(models.Model):
@@ -61,8 +62,13 @@ class PizzaOrder(models.Model):
             toppings.append("Onions")
         return self.size + ", " + self.crust + ", " + self.sauce + ", " +  self.cheese + ", " + "Toppings: " + str(toppings)
 
-class DeliveryiDetails(models.Model):
+class DeliveryDetail(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.TextField()
     last_name = models.TextField()
     address = models.TextField()
+    card = models.BigIntegerField()
+    expiry = models.DateField(default=date.today)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name + ", " + self.address + ", " + str(self.card) + ", " + str(self.expiry)
