@@ -3,7 +3,7 @@ from .views import *
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('customer', CustomerViewSet)
+router.register('customers', CustomerViewSet)
 router.register('book', BookViewSet)
 router.register('borrow', BorrowViewSet)
 
@@ -19,5 +19,5 @@ urlpatterns = [
     path('multiply', api_multiply, name='api_multiply'),
     path('exponential', api_exponential, name='api_exponential'),
     path('api-auth/', include('rest_framework.urls')),
-    path('api', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
