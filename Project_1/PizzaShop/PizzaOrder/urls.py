@@ -3,4 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('', view_homepage),
+    path('createpizza', create_pizza, name='create_pizza'),
+    path('createpizza/details', delivery_details, name='delivery_details'),
+    path('createpizza/details/orderplaced', order_placed, name='order_placed'),
 ]
