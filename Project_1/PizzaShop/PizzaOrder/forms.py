@@ -9,4 +9,6 @@ class PizzaForm(forms.ModelForm):
 class DetailsForm(forms.ModelForm):
     class Meta:
         model = DeliveryDetail
-        fields = ['first_name', 'last_name', 'address1', 'address2', 'county', 'eircode', 'card', 'expiry', 'pizza_order']
+        fields = ['first_name', 'last_name', 'address1', 'county', 'eircode', 'card', 'cvv', 'expiry', 'pizza_order']
+
+    #Validation, use "clean" for validation instead of validating on models.py 

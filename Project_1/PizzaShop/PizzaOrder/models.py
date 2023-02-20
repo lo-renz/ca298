@@ -1,5 +1,6 @@
 from django.db import models
-from datetime import *
+from django.core.exceptions import ValidationError
+from datetime import datetime
 
 # Create your models here.
 class PizzaSize(models.Model):
@@ -69,12 +70,12 @@ class DeliveryDetail(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     address1 = models.CharField(max_length=50, default='')
-    address2 = models.CharField(max_length=50, default='')
     county = models.CharField(max_length=50, default='')
     eircode = models.CharField(max_length=7, default='')
-    card = models.BigIntegerField()
-    expiry = models.DateField(default=date.today)
+    card = models.IntegerField()
+    expiry = models.CharField(max_length=5) #try to get in the form mm/yy
+    cvv = models.IntegerField(default=0)
     pizza_order = models.ForeignKey(PizzaOrder, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return "{}, {}, {}, {}, {}, {}, {}, {}, {}".format(self.first_name, self.last_name, self.address1, self.address2, self.county, self.eircode, self.card, self.expiry, self.pizza_order)
+        return "{}, {}, {}, {}, {}, {}, {}, {}, {}".format(self.first_name, self.last_name, self.address1, self.county, self.eircode, self.card, self.expiry, self.cvv, self.pizza_order)
