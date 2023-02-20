@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    <h1>Welcome to Pizza Shop!</h1>
+    <h1>Create your pizza here!</h1>
 {% endblock %}
 
 {% block content %}
@@ -8,9 +8,7 @@
         {% csrf_token %}
         {{ form.as_table }}
         <button type="submit">
-            <a href="/createpizza/details" aria-current="true">
-                Checkout
-            </a>
+            Checkout
         </button>
     </form>
 {% endblock %}

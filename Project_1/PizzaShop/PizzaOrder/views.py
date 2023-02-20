@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 
@@ -8,29 +8,24 @@ def view_homepage(request):
 
 def create_pizza(request):
     if request.method == "POST":
-        pizzaform = PizzaOrderForm(request.POST)
-        if pizzaform.is_valid():
-            pizza = pizzaform.save()
-            # once successful, send the user to the DeliveryDetails page.
-            return render(request, 'delivery_details.html', {'pizza':pizza})
+        form = PizzaForm(request.POST)
+        if form.is_valid():
+            pizza = form.save()
+            return redirect('createpizza/details', {'pizza':pizza})
         else:
-            # this runs when the form contains errors.
-            return render(request, 'create_pizza.html', {'form':pizzaform})
+            return render(request, 'create_pizza.html', {'form':form})
     else:
-        pizzaform = PizzaOrderForm()
-        return render(request, 'create_pizza.html', {'form':pizzaform})
+        form = PizzaForm()
+        return render(request, 'create_pizza.html', {'form':form})
 
 def delivery_details(request):
     if request.method == "POST":
-        detailsform = DetailsForm(request.POST)
-        if detailsform.is_valid():
-            details = detailsform.save()
-            return render(request, 'order_placed.html', {'details':details})
+        form = DetailsForm(request.POST)
+        if form.is_valid():
+            details = form.save()
+            return render(request, 'confirmation.html', {'details':details})
         else:
-            return render(request, 'delivery_details.html', {'form':detailsform})
+            return render(request, 'details.html', {'form':form})
     else:
-        detailsform = DetailsForm()
-        return render(request, 'delivery_details.html', {'form':detailsform})
-
-def order_placed(request):
-    return render(request, 'order_placed.html')
+        form = DetailsForm()
+        return render(request, 'details.html', {'form':form})

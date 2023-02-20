@@ -2,13 +2,40 @@ from django.db import models
 from datetime import *
 
 # Create your models here.
+class PizzaSize(models.Model):
+    id = models.AutoField(primary_key=True)
+    size = models.TextField(default='')
+
+    def __str__(self):
+        return self.size
 
 class PizzaCrust(models.Model):
-    pass 
+    id = models.AutoField(primary_key=True)
+    crust = models.TextField(default='')
+
+    def __str__(self):
+        return self.crust
+
+class PizzaSauce(models.Model):
+    id = models.AutoField(primary_key=True)
+    sauce = models.TextField(default='')
+
+    def __str__(self):
+        return self.sauce
+
+class PizzaCheese(models.Model):
+    id = models.AutoField(primary_key=True)
+    cheese = models.TextField(default='')
+
+    def __str__(self):
+        return self.cheese
 
 class PizzaOrder(models.Model):
     id = models.AutoField(primary_key=True)
-    crust = models.ForeignKey()
+    size = models.ForeignKey(PizzaSize, on_delete=models.SET_NULL, null=True)
+    crust = models.ForeignKey(PizzaCrust, on_delete=models.SET_NULL, null=True)
+    sauce = models.ForeignKey(PizzaSauce, on_delete=models.SET_NULL, null=True)
+    cheese = models.ForeignKey(PizzaCheese, on_delete=models.SET_NULL, null=True)
 
     # pizza toppings
     Pepperoni = models.BooleanField(default=False)
@@ -35,7 +62,7 @@ class PizzaOrder(models.Model):
             toppings.append("Mushrooms")
         if self.Onions == True:
             toppings.append("Onions")
-        return "Toppings: " + str(toppings)
+        return "{}, {}, {}, {}, {}".format(self.size, self.crust, self.sauce, self.cheese, str(toppings))
 
 class DeliveryDetail(models.Model):
     id = models.AutoField(primary_key=True)
@@ -50,4 +77,4 @@ class DeliveryDetail(models.Model):
     pizza_order = models.ForeignKey(PizzaOrder, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.first_name + " " + self.last_name + ", " + self.address1 + ", " + self.address2 + ", " + str(self.card) + ", " + str(self.expiry)
+        return "{}, {}, {}, {}, {}, {}, {}, {}, {}".format(self.first_name, self.last_name, self.address1, self.address2, self.county, self.eircode, self.card, self.expiry, self.pizza_order)

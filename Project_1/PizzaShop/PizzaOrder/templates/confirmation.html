@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <h1>Confirmation Page</h1>
+{% endblock %}
+
+{% block content %}
+    <p>Thank you for ordering your pizza with us!</p>
+    <p>Your pizza should be with you shortly.</p>
+    <p>{{ details.pizza_order }}</p>
+    <p>{{ details.pizza_order.cheese }}</p>
+{% endblock %}
