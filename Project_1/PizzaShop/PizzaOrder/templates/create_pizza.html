@@ -7,7 +7,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_table }}
-        <button>
+        <button type="submit">
             <a href="/createpizza/details" aria-current="true">
                 Checkout
             </a>

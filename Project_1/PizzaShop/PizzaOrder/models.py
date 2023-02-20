@@ -2,38 +2,13 @@ from django.db import models
 from datetime import *
 
 # Create your models here.
+
+class PizzaCrust(models.Model):
+    pass 
+
 class PizzaOrder(models.Model):
     id = models.AutoField(primary_key=True)
-
-    # pizza size
-    sizes = [
-        ("Large", "Large"),
-        ("Medium", "Medium"),
-        ("Small", "Small"),
-    ]
-    size = models.CharField(max_length=6, choices=sizes, default="Small")
-
-    # pizza crust
-    crust_types = [
-        ("Normal", "Normal"),
-        ("Thin", "Thin"),
-        ("Thick", "Thick"),
-    ]
-    crust = models.CharField(max_length=6, choices=crust_types, default="Normal")
-
-    # pizza sauce
-    sauces = [
-        ("Tomato", "Tomato"),
-        ("BBQ", "BBQ"),
-    ]
-    sauce = models.CharField(max_length=6, choices=sauces, default="Tomato")
-
-    # pizza cheese
-    cheeses = [
-        ("Mozzarella", "Mozzarella"),
-        ("Vegan", "Vegan"),
-    ]
-    cheese = models.CharField(max_length=10, choices=cheeses, default="Mozzarella")
+    crust = models.ForeignKey()
 
     # pizza toppings
     Pepperoni = models.BooleanField(default=False)
@@ -60,7 +35,7 @@ class PizzaOrder(models.Model):
             toppings.append("Mushrooms")
         if self.Onions == True:
             toppings.append("Onions")
-        return self.size + ", " + self.crust + ", " + self.sauce + ", " +  self.cheese + ", " + "Toppings: " + str(toppings)
+        return "Toppings: " + str(toppings)
 
 class DeliveryDetail(models.Model):
     id = models.AutoField(primary_key=True)
