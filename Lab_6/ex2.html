@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>ex2</title>
+    </head>
+    <body>
+        <p id="ex2">Change the color of this sentence by pressing the button.</p>
+        <button id="changeToRed">Click me</button>
+        <script>
+            function changeToRed() {
+                let specificPTag = document.getElementById("ex2");
+                specificPTag.style.color = "red";
+            }
+            let colorButton = document.getElementById("changeToRed");
+            colorButton.addEventListener('click', changeToRed);
+        </script>
+    </body>
+</html>

@@ -6,4 +6,4 @@ let anonymous = function() {
     console.log("Anonymous function");
 };
 
-printer(anonymous);
+printer(anonymous());

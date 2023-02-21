@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>ex4</title>
+    </head>
+    <body>
+        <ul id="planetAttributes">
+
+        </ul>
+        <script>
+
+            let planetAttributes = document.getElementById("planetAttributes");
+            fetch("https://swapi.dev/api/planets/1")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.name);
+                console.log(data.diameter);
+                console.log(data.climate);
+                console.log(data.terrain);
+                console.log(data.population);
+
+                let planetName = data.name;
+                let nameListElement = document.createElement("li");
+                nameListElement.innerHTML = planetName;
+                planetAttributes.appendChild(nameListElement);
+
+                let planetDiameter = data.diameter;
+                let diameterListElement = document.createElement("li");
+                diameterListElement.innerHTML = planetDiameter;
+                planetAttributes.appendChild(diameterListElement);
+
+                let planetClimate = data.climate;
+                let climateListElement = document.createElement("li");
+                climateListElement.innerHTML = planetClimate;
+                planetAttributes.appendChild(climateListElement);
+
+                let planetTerrain = data.terrain;
+                let terrainListElement = document.createElement("li");
+                terrainListElement.innerHTML = planetTerrain;
+                planetAttributes.appendChild(terrainListElement);
+
+                let planetPopulation = data.population;
+                let populationListElement = document.createElement("li");
+                populationListElement.innerHTML = planetPopulation;
+                planetAttributes.appendChild(populationListElement);
+
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>ex4</title>
+    </head>
+    <body>
+        <form id="ex4form">
+            <label for="form-number1-input">Number 1</label>
+            <input type="text" name="form-number1-input" id="number1-input" placeholder="Enter a number here">
+
+            <labeL for="form-number2-input">Number 2</labeL>
+            <input type="text" name="form-number2-input" id="number2-input" placeholder="Enter a number here">
+
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+
+            function formValidator() {
+                event.preventDefault();
+                let number1 = document.getElementById("number1-input").value;
+                let number2 = document.getElementById("number2-input").value;
+                if(isNaN(number1)) {
+                    document.write(number1 + " is not a number <br/>");
+                }
+                if(isNaN(number2)) {
+                    document.write(number2 + " is not a number <br/>");
+                }
+
+                if(number1 == "" && number2 == "") {
+                    alert("Make sure both numbers are filled!");
+                } else {
+                    let result = parseInt(number1) + parseInt(number2);
+                    let nameElement = document.createElement("p");
+                    nameElement.innerHTML = result;
+                    document.body.appendChild(nameElement);
+                }
+
+            }
+
+            let ex4form = document.getElementById("ex4form");
+            ex4form.addEventListener('submit', formValidator);
+
+        </script>
+    </body>
+</html>

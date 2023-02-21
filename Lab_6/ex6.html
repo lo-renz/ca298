@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>ex4</title>
+    </head>
+    <body>
+
+        <img id="myImg" src="">
+        <button id="newDog">Random Dog</button>
+
+        <script>
+
+            function randomDog() {
+                fetch("https://dog.ceo/api/breeds/image/random")
+                .then(response => response.json())
+                .then(data => {
+                    let randomDogLink = data.message;
+                    document.getElementById("myImg").src = randomDogLink;
+                });
+            }
+
+            let myButton = document.getElementById("newDog");
+            myButton.addEventListener('click', randomDog);
+        </script>
+    </body>
+</html>
