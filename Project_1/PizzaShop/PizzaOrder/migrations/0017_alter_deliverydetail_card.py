@@ -11,9 +11,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='deliverydetail',
-            name='card',
-            field=models.BigIntegerField(validators=[PizzaOrder.models.validate_card]),
-        ),
     ]

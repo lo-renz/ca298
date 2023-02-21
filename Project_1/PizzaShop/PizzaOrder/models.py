@@ -1,6 +1,4 @@
 from django.db import models
-from django.core.exceptions import ValidationError
-from datetime import datetime
 
 # Create your models here.
 class PizzaSize(models.Model):
@@ -65,16 +63,19 @@ class PizzaOrder(models.Model):
             toppings.append("Onions")
         return "{}, {}, {}, {}, {}".format(self.size, self.crust, self.sauce, self.cheese, str(toppings))
 
+# TODO: get rid of some of the max_length args so that the validator in forms.py can work!
 class DeliveryDetail(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     address1 = models.CharField(max_length=50, default='')
-    county = models.CharField(max_length=50, default='')
+    address2 = models.CharField(max_length=50, default='')
+    city = models.CharField(max_length=50, default='')
+    county = models.CharField(max_length=20, default='')
     eircode = models.CharField(max_length=7, default='')
     card = models.IntegerField()
+    cvv = models.CharField(max_length=3)
     expiry = models.CharField(max_length=5) #try to get in the form mm/yy
-    cvv = models.IntegerField(default=0)
     pizza_order = models.ForeignKey(PizzaOrder, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

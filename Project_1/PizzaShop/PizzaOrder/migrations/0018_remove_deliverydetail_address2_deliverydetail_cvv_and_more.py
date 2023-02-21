@@ -15,11 +15,6 @@ class Migration(migrations.Migration):
             model_name='deliverydetail',
             name='address2',
         ),
-        migrations.AddField(
-            model_name='deliverydetail',
-            name='cvv',
-            field=models.IntegerField(default=0, validators=[PizzaOrder.models.validate_cvv]),
-        ),
         migrations.AlterField(
             model_name='deliverydetail',
             name='expiry',
