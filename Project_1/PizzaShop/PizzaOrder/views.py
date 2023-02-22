@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_list_or_404
+from django.http import HttpResponseRedirect
 from .models import *
 from .forms import *
 
@@ -11,7 +12,8 @@ def create_pizza(request):
         form = PizzaForm(request.POST)
         if form.is_valid():
             pizza = form.save()
-            return redirect('createpizza/details', {'pizza':pizza})
+            #return render(request, 'details.html', {'pizza':pizza})
+            return HttpResponseRedirect('createpizza/details', {'pizza':pizza})
         else:
             return render(request, 'create_pizza.html', {'form':form})
     else:
@@ -23,7 +25,9 @@ def delivery_details(request):
         form = DetailsForm(request.POST)
         if form.is_valid():
             details = form.save()
-            return render(request, 'confirmation.html', {'details':details})
+            pizza = get_list_or_404(PizzaOrder)
+            user = get_list_or_404(DeliveryDetail)
+            return render(request, 'confirmation.html', {'details':details, 'pizza':pizza, 'user':user})
         else:
             return render(request, 'details.html', {'form':form})
     else:

@@ -1,5 +1,5 @@
+<!--TODO: Add a navbar and only show the pizza and confirmation details at on this page.-->
 {% extends 'base.html' %}
-
 {% block title %}
     <h1>Confirmation Page</h1>
 {% endblock %}
@@ -17,4 +17,6 @@
             Click here to create another pizza
         </a>
     </button>
+
+    <p>{{ details.first_name }}</p>
 {% endblock %}
