@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import *
 from .forms import *
@@ -24,9 +24,8 @@ def delivery_details(request):
         form = DetailsForm(request.POST)
         if form.is_valid():
             details = form.save()
-            pizza = get_list_or_404(PizzaOrder)
-            user = get_list_or_404(DeliveryDetail)
-            return render(request, 'confirmation.html', {'details':details, 'pizza':pizza, 'user':user})
+            pizza = get_object_or_404(PizzaOrder)
+            return render(request, 'confirmation.html', {'details':details, 'pizza':pizza})
         else:
             return render(request, 'details.html', {'form':form})
     else:

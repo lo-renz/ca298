@@ -45,23 +45,21 @@ class PizzaOrder(models.Model):
     Mushrooms = models.BooleanField(default=False)
     Onions = models.BooleanField(default=False)
 
-    def toppings(self):
-        toppings = []
-        if self.Pepperoni == True:
-            toppings.append("Pepperoni")
-        if self.Chicken == True:
-            toppings.append("Chicken")
-        if self.Ham == True:
-            toppings.append("Ham")
-        if self.Pineapple == True:
-            toppings.append("Pineapple")
-        if self.Peppers == True:
-            toppings.append("Peppers")
-        if self.Mushrooms == True:
-            toppings.append("Mushrooms")
-        if self.Onions == True:
-            toppings.append("Onions")
-        return toppings
+    toppings = []
+    if Pepperoni == True:
+        toppings.append("Pepperoni")
+    if Chicken == True:
+        toppings.append("Chicken")
+    if Ham == True:
+       toppings.append("Ham")
+    if Pineapple == True:
+        toppings.append("Pineapple")
+    if Peppers == True:
+        toppings.append("Peppers")
+    if Mushrooms == True:
+        toppings.append("Mushrooms")
+    if Onions == True:
+        toppings.append("Onions")
  
     def __str__(self):
         toppings = []
@@ -79,7 +77,8 @@ class PizzaOrder(models.Model):
             toppings.append("Mushrooms")
         if self.Onions == True:
             toppings.append("Onions")
-        return "{}, {}, {}, {}, {}".format(self.size, self.crust, self.sauce, self.cheese, str(toppings))
+        #return "{}, {}, {}, {}, {}".format(self.size, self.crust, self.sauce, self.cheese, str(toppings))
+        return ", ".join(toppings)
 
 # TODO: get rid of some of the max_length args so that the validator in forms.py can work!
 class DeliveryDetail(models.Model):

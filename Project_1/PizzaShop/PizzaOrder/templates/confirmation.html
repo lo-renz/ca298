@@ -12,10 +12,17 @@
     <p>{{ details.pizza_order }}</p>
 
     <p>Would you like to create another pizza?</p>
+    
+    <p><b>Here is the pizza you created:</b></p>
+    <p>{{ pizza.size }}</p>
+    <p>{{ pizza.crust }}</p>
+    <p>{{ pizza.sauce }}</p>
+    <p>{{ pizza.cheese }}</p>
+    <p>{{ pizza }}</p>
+    
     <button>
         <a href="/createpizza" aria-current="true">
             Click here to create another pizza
         </a>
     </button>
-
 {% endblock %}

@@ -28,7 +28,6 @@ class DetailsForm(forms.ModelForm):
         cvv = data['cvv']
 
 
-        # this block of code checks whether the format of the expiry date is valid.
         try:
             # name validation
             if(first_name == ""):
@@ -47,7 +46,7 @@ class DetailsForm(forms.ModelForm):
                 raise forms.ValidationError("Invalid County!")
             elif len(eircode) != 7:
                 raise forms.ValidationError("Invalid Eircode!")
-            
+
             # visa or mastercard number validation
             if (str(card)[0] != "4" and len(str(card)) != 13 or len(str(card)) != 16) or (str(card)[0] != "5" and len(str(card)) != 16):
                 raise forms.ValidationError("Invalid card number!")
@@ -70,15 +69,10 @@ class DetailsForm(forms.ModelForm):
             # checking whether the expiry date format is correct
             if datetime.strptime(expiry, '%m/%y'):
                 pass
-            #else:
-            #    raise forms.ValidationError("Invalid date format entered!")
-
-            # card cvv validation
-            #    raise forms.ValidationError("Invalid cvv entered!")
 
         except ValueError:
             raise forms.ValidationError("Invalid date format entered!")
-        
+
         try:
             if int(cvv):
                 pass
