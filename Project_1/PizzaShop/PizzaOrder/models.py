@@ -45,6 +45,24 @@ class PizzaOrder(models.Model):
     Mushrooms = models.BooleanField(default=False)
     Onions = models.BooleanField(default=False)
 
+    def toppings(self):
+        toppings = []
+        if self.Pepperoni == True:
+            toppings.append("Pepperoni")
+        if self.Chicken == True:
+            toppings.append("Chicken")
+        if self.Ham == True:
+            toppings.append("Ham")
+        if self.Pineapple == True:
+            toppings.append("Pineapple")
+        if self.Peppers == True:
+            toppings.append("Peppers")
+        if self.Mushrooms == True:
+            toppings.append("Mushrooms")
+        if self.Onions == True:
+            toppings.append("Onions")
+        return toppings
+ 
     def __str__(self):
         toppings = []
         if self.Pepperoni == True:

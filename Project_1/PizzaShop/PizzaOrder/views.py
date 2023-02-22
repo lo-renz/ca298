@@ -12,7 +12,6 @@ def create_pizza(request):
         form = PizzaForm(request.POST)
         if form.is_valid():
             pizza = form.save()
-            #return render(request, 'details.html', {'pizza':pizza})
             return HttpResponseRedirect('createpizza/details', {'pizza':pizza})
         else:
             return render(request, 'create_pizza.html', {'form':form})

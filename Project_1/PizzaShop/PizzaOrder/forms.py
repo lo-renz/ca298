@@ -68,21 +68,22 @@ class DetailsForm(forms.ModelForm):
                 raise forms.ValidationError("Invalid month was entered!")
 
             # checking whether the expiry date format is correct
-            try:
-                datetime.strptime(expiry, '%m/%y')
-            except ValueError:
-                raise forms.ValidationError("Invalid date format entered!")
-            #if datetime.strptime(expiry, '%m/%y'):
-            #    pass
+            if datetime.strptime(expiry, '%m/%y'):
+                pass
+            #else:
+            #    raise forms.ValidationError("Invalid date format entered!")
 
             # card cvv validation
-            if int(cvv):
-                pass 
-            elif str(cvv) == "000":
-                pass
-            else:
-                raise forms.ValidationError("Invalid cvv entered")
+            #    raise forms.ValidationError("Invalid cvv entered!")
 
+        except ValueError:
+            raise forms.ValidationError("Invalid date format entered!")
+        
+        try:
+            if int(cvv):
+                pass
+            elif cvv == "000":
+                pass
         except ValueError:
             raise forms.ValidationError("Invalid cvv entered!")
 
