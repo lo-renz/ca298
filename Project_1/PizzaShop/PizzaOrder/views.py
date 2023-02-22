@@ -19,6 +19,7 @@ def create_pizza(request):
         form = PizzaForm()
         return render(request, 'create_pizza.html', {'form':form})
 
+# TODO: find out how to keep a pizza connected (with having to manually selecting a pizza) to the customer when the user presses "order" create_pizza.html.
 def delivery_details(request):
     if request.method == "POST":
         form = DetailsForm(request.POST)
