@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, NumberInput
+from django.forms import TextInput, NumberInput, Select, CheckboxInput
 from .models import *
 from datetime import datetime
 
@@ -8,6 +8,61 @@ class PizzaForm(forms.ModelForm):
         model = PizzaOrder
         fields = ['size', 'crust', 'sauce', 'cheese', 'Pepperoni', 'Chicken', 'Ham', 'Pineapple', 'Peppers', 'Mushrooms', 'Onions']
         # TODO: use widget classes to style the form.
+        # cannot use widget classes because the size, crust, sauce and cheese are foreign keys.
+
+        widgets = {
+            'size': Select(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px',
+                'placeholder': 'Size',
+            }),
+
+            'crust': Select(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px',
+                'placeholder': 'Crust',
+            }),
+
+            'sauce': Select(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px',
+                'placeholder': 'Sauce',
+            }),
+
+            'cheese': Select(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px',
+                'placeholder': 'Cheese',
+            }),
+
+            'Pepperoni': CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+
+            'Chicken': CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+
+            'Ham': CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+
+            'Pineapples': CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+
+            'Peppers': CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+
+            'Mushrooms': CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+
+            'Onions': CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+        }
 
 class DetailsForm(forms.ModelForm):
     class Meta:
@@ -151,3 +206,6 @@ class DetailsForm(forms.ModelForm):
             raise forms.ValidationError("Invalid cvv entered!")
 
         return data
+
+# References
+# 1. https://medium.com/swlh/how-to-style-your-django-forms-7e8463aae4fa#:~:text=A%20widget%20is%20Django's%20representation,will%20be%20rendered%20as%20HTML.

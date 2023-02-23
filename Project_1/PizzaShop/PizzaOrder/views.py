@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from .models import *
 from .forms import *
@@ -12,22 +12,21 @@ def create_pizza(request):
         form = PizzaForm(request.POST)
         if form.is_valid():
             pizza = form.save()
-            return HttpResponseRedirect('createpizza/details/' + str(pizza.id), {'pizza':pizza})
+            return HttpResponseRedirect('createpizza/' + str(pizza.id) + '/details', {'pizza':pizza})
         else:
             return render(request, 'create_pizza.html', {'form':form})
     else:
         form = PizzaForm()
         return render(request, 'create_pizza.html', {'form':form})
 
-# TODO: find out how to keep a pizza connected (with having to manually selecting a pizza) to the customer when the user presses "order" create_pizza.html.
 def delivery_details(request, id):
     if request.method == "POST":
         form = DetailsForm(request.POST)
         if form.is_valid():
             details = form.save()
+            customer = get_object_or_404(DeliveryDetail, id=id)
             pizza = get_object_or_404(PizzaOrder, id=id)
-            return HttpResponseRedirect(str(details.id) + '/confirmation', {'details':details, 'pizza':pizza})
-            #return render(request, 'confirmation.html', {'details':details, 'pizza':pizza, 'user_details':user_details})
+            return render(request, 'confirmation.html', {'pizza':pizza, 'customer':customer, 'details':details})
         else:
             return render(request, 'details.html', {'form':form})
     else:

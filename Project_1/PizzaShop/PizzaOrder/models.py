@@ -78,9 +78,8 @@ class PizzaOrder(models.Model):
         if self.Onions == True:
             toppings.append("Onions")
         #return "{}, {}, {}, {}, {}".format(self.size, self.crust, self.sauce, self.cheese, str(toppings))
-        return str(", ".join(toppings)) + ", " + str(self.id)
+        return str(" ".join(toppings))
 
-# TODO: get rid of some of the max_length args so that the validator in forms.py can work!
 class DeliveryDetail(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20)

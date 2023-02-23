@@ -4,18 +4,24 @@
 {% endblock %}
 
 {% block content %}
-    <form action="" method="POST" class="row g-3">
-        {% csrf_token %}
-        <div class="col-md-6">
-            <label class="form-label"><b>First name:</b></label>
-            {{ form.as_table }}
-        </div>
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-6">
+            <h3>Enter your details here:"</h3>
+            <form action="" method="POST" class="form-example">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_table }}
+                </div>
 
-        <div class="col-md-8">
-            <button type="submit">
-                Place Order
-            </button>
+                <br>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary">
+                        Place Order
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 
 {% endblock %}

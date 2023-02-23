@@ -4,14 +4,28 @@
 {% endblock %}
 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
- 
-        <button type="submit">
-            Order
-        </button>
-    </form>
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-6">
+            <h3>Create your pizza here!</h3>
+            <form action="" method="POST" class="form-example">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_table }}
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary">
+                        Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
+
+<!--
+    References:
+    1. https://aguidehub.com/blog/how-to-align-a-form-in-center-in-bootstrap/
+--> 
