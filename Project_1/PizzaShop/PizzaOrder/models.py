@@ -78,7 +78,7 @@ class PizzaOrder(models.Model):
         if self.Onions == True:
             toppings.append("Onions")
         #return "{}, {}, {}, {}, {}".format(self.size, self.crust, self.sauce, self.cheese, str(toppings))
-        return str(", ".join(toppings))
+        return str(", ".join(toppings)) + ", " + str(self.id)
 
 # TODO: get rid of some of the max_length args so that the validator in forms.py can work!
 class DeliveryDetail(models.Model):
@@ -96,4 +96,4 @@ class DeliveryDetail(models.Model):
     pizza_order = models.ForeignKey(PizzaOrder, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return "{}, {}, {}, {}, {}, {}, {}, {}, {}".format(self.first_name, self.last_name, self.address1, self.county, self.eircode, self.card, self.expiry, self.cvv, self.pizza_order)
+        return "{}, {}, {}, {}, {}, {}, {}, {}, {}".format(self.first_name, self.last_name, self.address1, self.county, self.eircode, self.card, self.expiry, self.cvv, self.id)

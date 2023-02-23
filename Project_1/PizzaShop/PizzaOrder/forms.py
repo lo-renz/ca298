@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import TextInput, NumberInput
 from .models import *
 from datetime import datetime
 
@@ -11,8 +12,76 @@ class PizzaForm(forms.ModelForm):
 class DetailsForm(forms.ModelForm):
     class Meta:
         model = DeliveryDetail
-        fields = ['first_name', 'last_name', 'address1', 'address2', 'city', 'county', 'eircode', 'card', 'expiry', 'cvv', 'pizza_order']
-        # TODO: use widget classes to style the form.
+        fields = ['first_name', 'last_name', 'address1', 'address2', 'city', 'county', 'eircode', 'card', 'expiry', 'cvv']
+
+        widgets = {
+            'first_name': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'First name',
+            }),
+
+            'last_name': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'Last name',
+            }),
+
+            'address1': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'Address Line 1',
+            }),
+
+
+            'address2': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'Address Line 2',
+            }),
+
+
+            'city': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'City',
+            }),
+
+
+            'county': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'County',
+            }),
+
+
+            'eircode': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'Eircode',
+            }),
+
+
+            'card': NumberInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'Card number',
+            }),
+
+
+            'expiry': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'Expiry date',
+            }),
+
+
+            'cvv': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max_width: 300px;',
+                'placeholder': 'CVV',
+            })
+        }
 
     def clean(self):
         data = self.cleaned_data

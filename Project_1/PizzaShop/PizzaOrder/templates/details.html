@@ -4,14 +4,18 @@
 {% endblock %}
 
 {% block content %}
-    <form action="" method="POST">
+    <form action="" method="POST" class="row g-3">
         {% csrf_token %}
-        <table>
+        <div class="col-md-6">
+            <label class="form-label"><b>First name:</b></label>
             {{ form.as_table }}
-        </table>
+        </div>
 
-        <button type="submit">
-            Place Order
-        </button>
+        <div class="col-md-8">
+            <button type="submit">
+                Place Order
+            </button>
+        </div>
     </form>
+
 {% endblock %}
