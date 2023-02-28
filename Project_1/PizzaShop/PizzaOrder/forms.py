@@ -7,8 +7,6 @@ class PizzaForm(forms.ModelForm):
     class Meta:
         model = PizzaOrder
         fields = ['size', 'crust', 'sauce', 'cheese', 'Pepperoni', 'Chicken', 'Ham', 'Pineapple', 'Peppers', 'Mushrooms', 'Onions']
-        # TODO: use widget classes to style the form.
-        # cannot use widget classes because the size, crust, sauce and cheese are foreign keys.
 
         widgets = {
             'size': Select(attrs={

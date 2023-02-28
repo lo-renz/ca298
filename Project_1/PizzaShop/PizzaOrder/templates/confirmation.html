@@ -8,19 +8,37 @@
     <p>Thank you for ordering your pizza with us!</p>
     <p>Your pizza should be with you shortly.</p>
     <br>
-    <p>Here is a review of the pizza you ordered:</p>
+    <h3>Here is a review of the pizza you ordered:</h3>
 
     <p>Would you like to create another pizza?</p>
 
     <p>{{ toppings }}</p>
-    <button>
-        <a href="/createpizza" aria-current="true">
-            Click here to create another pizza
-        </a>
-    </button>
 
     <h5>Testing</h5>
     <p>{{ customer.id }}</p>
     <p>{{ pizza.id }}</p>
 
+    <!-- Summary of Order -->
+    <h5>Pizza summary</h5>
+    <p>{{ pizza.size }}</p>
+    <p>{{ pizza.crust }}</p>
+    <p>{{ pizza.sauce }}</p>
+    <p>{{ pizza.cheese }}</p>
+    <p>{{ pizza }}</p>
+
+    <!-- Summary of Details, just have summary of name and address, don't add the credit card details -->
+    <h5>Summary of your details</h5>
+    <p>{{ customer.first_name }} </p>
+    <p>{{ customer.second_name }} </p>
+    <p>{{ customer.address1 }} </p>
+    <p>{{ customer.address2 }} </p>
+    <p>{{ customer.city}} </p>
+    <p>{{ customer.county}} </p>
+    <p>{{ customer.eircode}} </p>
+
+    <button>
+        <a href="/createpizza" aria-current="true">
+            Click here to create another pizza
+        </a>
+    </button>
 {% endblock %}

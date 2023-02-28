@@ -91,7 +91,7 @@ class DeliveryDetail(models.Model):
     eircode = models.CharField(max_length=7, default='')
     card = models.IntegerField()
     cvv = models.CharField(max_length=3)
-    expiry = models.CharField(max_length=5) #try to get in the form mm/yy
+    expiry = models.CharField(max_length=5)
     pizza_order = models.ForeignKey(PizzaOrder, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
