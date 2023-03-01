@@ -125,7 +125,7 @@ class DetailsForm(forms.ModelForm):
             'expiry': TextInput(attrs={
                 'class': 'form-control',
                 'style': 'max_width: 300px;',
-                'placeholder': 'Expiry date',
+                'placeholder': 'MM/YY',
             }),
 
 
