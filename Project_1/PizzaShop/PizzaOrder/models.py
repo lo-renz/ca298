@@ -77,8 +77,7 @@ class PizzaOrder(models.Model):
             toppings.append("Mushrooms")
         if self.Onions == True:
             toppings.append("Onions")
-        #return "{}, {}, {}, {}, {}".format(self.size, self.crust, self.sauce, self.cheese, str(toppings))
-        return str(" ".join(toppings))
+        return str(", ".join(toppings))
 
 class DeliveryDetail(models.Model):
     id = models.AutoField(primary_key=True)
@@ -92,7 +91,6 @@ class DeliveryDetail(models.Model):
     card = models.IntegerField()
     cvv = models.CharField(max_length=3)
     expiry = models.CharField(max_length=5)
-    pizza_order = models.ForeignKey(PizzaOrder, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return "{}, {}, {}, {}, {}, {}, {}, {}, {}".format(self.first_name, self.last_name, self.address1, self.county, self.eircode, self.card, self.expiry, self.cvv, self.id)

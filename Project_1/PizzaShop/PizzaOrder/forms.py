@@ -169,8 +169,8 @@ class DetailsForm(forms.ModelForm):
             elif len(eircode) != 7:
                 raise forms.ValidationError("Invalid Eircode!")
 
-            # visa or mastercard number validation
-            if (str(card)[0] != "4" and len(str(card)) != 13 or len(str(card)) != 16) or (str(card)[0] != "5" and len(str(card)) != 16):
+            # mastercard number validation
+            if (str(card)[0] != "5" and len(str(card)) != 16):
                 raise forms.ValidationError("Invalid card number!")
 
             # card expiry date vaildation

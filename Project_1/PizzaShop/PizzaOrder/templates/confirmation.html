@@ -14,11 +14,11 @@
             <!-- Summary of Order -->
             <h4>Pizza summary</h4>
             <ul class="list-group">
-                <li class="list-group-item list-group-item-light">{{ pizza.size }}</li>
-                <li class="list-group-item list-group-item-light">{{ pizza.crust }}</li>
-                <li class="list-group-item list-group-item-light">{{ pizza.sauce }}</li>
-                <li class="list-group-item list-group-item-light">{{ pizza.cheese }}</li>
-                <li class="list-group-item list-group-item-light">{{ pizza }}</li>
+                <li class="list-group-item list-group-item-light"><b>Size:</b> {{ pizza.size }}</li>
+                <li class="list-group-item list-group-item-light"><b>Crust:</b> {{ pizza.crust }}</li>
+                <li class="list-group-item list-group-item-light"><b>Sauce:</b> {{ pizza.sauce }}</li>
+                <li class="list-group-item list-group-item-light"><b>Cheese:</b> {{ pizza.cheese }}</li>
+                <li class="list-group-item list-group-item-light"><b>Toppings:</b> {{ pizza }}</li>
             </ul>
 
             <br>
@@ -26,13 +26,13 @@
             <!-- Summary of Details, just have summary of name and address, don't add the credit card details -->
             <h4>Details summary</h4>
             <ul class="list-group">
-                <li class="list-group-item list-group-item-light">{{ customer.first_name }}</li>
-                <li class="list-group-item list-group-item-light">{{ customer.last_name }}</li>
-                <li class="list-group-item list-group-item-light">{{ customer.address1 }}</li>
-                <li class="list-group-item list-group-item-light">{{ customer.address2 }}</li>
-                <li class="list-group-item list-group-item-light">{{ customer.city }}</li>
-                <li class="list-group-item list-group-item-light">{{ customer.county }}</li>
-                <li class="list-group-item list-group-item-light">{{ customer.eircode }}</li>
+                <li class="list-group-item list-group-item-light"><b>First Name:</b> {{ customer.first_name }}</li>
+                <li class="list-group-item list-group-item-light"><b>Last Name:</b> {{ customer.last_name }}</li>
+                <li class="list-group-item list-group-item-light"><b>Address Line 1:</b> {{ customer.address1 }}</li>
+                <li class="list-group-item list-group-item-light"><b>Address Line 2:</b> {{ customer.address2 }}</li>
+                <li class="list-group-item list-group-item-light"><b>City:</b> {{ customer.city }}</li>
+                <li class="list-group-item list-group-item-light"><b>County:</b> {{ customer.county }}</li>
+                <li class="list-group-item list-group-item-light"><b>Eircode:</b> {{ customer.eircode }}</li>
             </ul>
 
             <br>
