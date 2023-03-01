@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}
-    <h1>Welcome to Pizza Shop!</h1>
+    <h1 class="display-1">Welcome to the Pizza Shop!</h1>
+    <h6 class="display-6">Click the button below to create a pizza!</h6>
 {% endblock %}
 
 {% block content %}
-    <div class="button">
-        <button>
+    <div class="button" align="center">
+        <button class="btn btn-light btn-lg">
         <a href="/createpizza" aria-current="true">
             Create Pizza
         </a>

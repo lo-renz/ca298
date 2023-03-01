@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}
-    <h1>Enter your details here!</h1>
 {% endblock %}
 
 {% block content %}
     <div class="row">
-        <div class="mx-auto col-10 col-md-8 col-lg-6">
-            <h3>Enter your details here:"</h3>
+        <div class="mx-auto col-10 col-md-8 col-lg-4">
+            <h5 class="display-5">Enter your details here:</h5>
             <form action="" method="POST" class="form-example">
                 {% csrf_token %}
                 <div class="form-group">
@@ -16,7 +15,7 @@
                 <br>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-outline-primary">
+                    <button type="submit" class="btn btn-light">
                         Place Order
                     </button>
                 </div>

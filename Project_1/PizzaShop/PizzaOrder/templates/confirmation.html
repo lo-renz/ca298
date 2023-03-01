@@ -1,44 +1,49 @@
 <!--TODO: Add a navbar and only show the pizza and confirmation details at on this page.-->
 {% extends 'base.html' %}
 {% block title %}
-    <h1>Confirmation Page</h1>
 {% endblock %}
 
 {% block content %}
-    <p>Thank you for ordering your pizza with us!</p>
-    <p>Your pizza should be with you shortly.</p>
-    <br>
-    <h3>Here is a review of the pizza you ordered:</h3>
 
-    <p>Would you like to create another pizza?</p>
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-4">
+            <h5 class="display-5">Here is a review of your order:</h5>
 
-    <p>{{ toppings }}</p>
+            <br>
 
-    <h5>Testing</h5>
-    <p>{{ customer.id }}</p>
-    <p>{{ pizza.id }}</p>
+            <!-- Summary of Order -->
+            <h4>Pizza summary</h4>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">{{ pizza.size }}</li>
+                <li class="list-group-item list-group-item-light">{{ pizza.crust }}</li>
+                <li class="list-group-item list-group-item-light">{{ pizza.sauce }}</li>
+                <li class="list-group-item list-group-item-light">{{ pizza.cheese }}</li>
+                <li class="list-group-item list-group-item-light">{{ pizza }}</li>
+            </ul>
 
-    <!-- Summary of Order -->
-    <h5>Pizza summary</h5>
-    <p>{{ pizza.size }}</p>
-    <p>{{ pizza.crust }}</p>
-    <p>{{ pizza.sauce }}</p>
-    <p>{{ pizza.cheese }}</p>
-    <p>{{ pizza }}</p>
+            <br>
 
-    <!-- Summary of Details, just have summary of name and address, don't add the credit card details -->
-    <h5>Summary of your details</h5>
-    <p>{{ customer.first_name }} </p>
-    <p>{{ customer.second_name }} </p>
-    <p>{{ customer.address1 }} </p>
-    <p>{{ customer.address2 }} </p>
-    <p>{{ customer.city}} </p>
-    <p>{{ customer.county}} </p>
-    <p>{{ customer.eircode}} </p>
+            <!-- Summary of Details, just have summary of name and address, don't add the credit card details -->
+            <h4>Details summary</h4>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">{{ customer.first_name }}</li>
+                <li class="list-group-item list-group-item-light">{{ customer.last_name }}</li>
+                <li class="list-group-item list-group-item-light">{{ customer.address1 }}</li>
+                <li class="list-group-item list-group-item-light">{{ customer.address2 }}</li>
+                <li class="list-group-item list-group-item-light">{{ customer.city }}</li>
+                <li class="list-group-item list-group-item-light">{{ customer.county }}</li>
+                <li class="list-group-item list-group-item-light">{{ customer.eircode }}</li>
+            </ul>
 
-    <button>
-        <a href="/createpizza" aria-current="true">
-            Click here to create another pizza
-        </a>
-    </button>
+            <br>
+
+            <button class="btn btn-light">
+                <a href="/createpizza" aria-current="true">
+                    Click here to create another pizza
+                </a>
+            </button>
+        </div>
+    </div>
+
+
 {% endblock %}
