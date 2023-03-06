@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <b>{{ item.name }}</b>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Description: {{ item.description }}</li>
+            <li class="list-group-item">Size: {{ item.size }}</li>
+            <li class="list-group-item">Type: {{ item.type }}</li>
+            <li class="list-group-item">Color: {{ item.color }}</li>
+            <li class="list-group-item">Price: {{ item.price }}</li>
+            <li class="list-group-item">Quantity: {{ item.quantity }}</li>
+        </ul>
+    </div>
+    <br>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-4">
+            <h5 class="display-5">Add a new item here:</h5>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Create
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
