@@ -12,11 +12,11 @@
         <div id="container"></div>
         <br><br>
         <form id="book-form">
-            Title: <input type="text" name="title"> <br><br>
-            Author: <input type="text" name="author"> <br><br>
-            Genre: <input type="text" name="genre"> <br><br>
-            Release Year: <input type="int" name="release_year"> <br><br>
-            Quantity: <input type="int" name="quantity"> <br><br>
+            Title: <input type="text" id="title"> <br><br>
+            Author: <input type="text" id="author"> <br><br>
+            Genre: <input type="text" id="genre"> <br><br>
+            Release Year: <input type="int" id="release_year"> <br><br>
+            Quantity: <input type="int" id="quantity"> <br><br>
             <input type="submit" value="Submit">
         </form>
 
@@ -24,39 +24,31 @@
             document.getElementById("book-form").addEventListener("submit", onSubmit);
 
             function onSubmit() {
+                let container = document.getElementById("container");
+                container = "";
                 let form = document.getElementById("book-form");
                 form.addEventListener("submit", (e) => {
                     e.preventDefault();
 
                     // load variables from the form and construct a JSON object for the data
                     let newBook = {
-                        "Title": document.forms["book-form"]["title"].value,
-                        "Author": document.forms["book-form"]["author"].value,
-                        "Genre": document.forms["book-form"]["genre"].value,
-                        "Release year": document.forms["book-form"]["release_year"].value,
-                        "Quantity": document.forms["book-form"]["quantity"].value
+                        "Title": document.getElementById("title").value,
+                        "Author": document.getElementById("author").value,
+                        "Genre": document.getElementById("genre").value,
+                        "Release year": document.getElementById("release_year").value,
+                        "Quantity": document.getElementById("quantity").value
                     }
 
-                    // send as a POST request to http://127.0.0.1:8000/api/book/
-                    fetch("http://127.0.0.1:8000/api/book/", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(newBook),
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log("Success:", data);
-                        })
-                        .catch(error => {
-                            console.log("Error:", error);
-                        })
-
-                    // refresh the page
-                    window.location.reload;
+                    console.log(document.getElementById("title").value);
+                    console.log(document.getElementById("author").value);
+                    console.log(document.getElementById("genre").value);
+                    console.log(document.getElementById("release_year").value);
+                    console.log(document.getElementById("quantity").value);
+                    //container.innerHTML += JSON.stringify(newBook);
+                    //window.location.reload();
                 });
             }
+            onSubmit();
 
             function showAllBooks(){
 				let container = document.getElementById("container"); // load the container
