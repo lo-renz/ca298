@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+
+    <body>
+        <h1><%= title %></h1>
+        <p>Welcome to <%= title %></p>
+
+        <div id="container"></div>
+        <br><br>
+        <form id="book-form">
+            Title: <input type="text" name="title"> <br><br>
+            Author: <input type="text" name="author"> <br><br>
+            Genre: <input type="text" name="genre"> <br><br>
+            Release Year: <input type="int" name="release_year"> <br><br>
+            Quantity: <input type="int" name="quantity"> <br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <script>
+            document.getElementById("book-form").addEventListener("submit", onSubmit);
+
+            function onSubmit() {
+                let form = document.getElementById("book-form");
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    // load variables from the form and construct a JSON object for the data
+                    let newBook = {
+                        "Title": document.forms["book-form"]["title"].value,
+                        "Author": document.forms["book-form"]["author"].value,
+                        "Genre": document.forms["book-form"]["genre"].value,
+                        "Release year": document.forms["book-form"]["release_year"].value,
+                        "Quantity": document.forms["book-form"]["quantity"].value
+                    }
+
+                    // send as a POST request to http://127.0.0.1:8000/api/book/
+                    fetch("http://127.0.0.1:8000/api/book/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(newBook),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("Success:", data);
+                        })
+                        .catch(error => {
+                            console.log("Error:", error);
+                        })
+
+                    // refresh the page
+                    window.location.reload;
+                });
+            }
+
+            function showAllBooks(){
+				let container = document.getElementById("container"); // load the container
+				container.innerHTML = ""; // delete the content already inside the container
+		        let req = "http://127.0.0.1:8000/api/book/"
+		        fetch(req) // make a request to this endpoint
+                .then(response => response.json()) // with our response, get the json data returned
+                //.then(data => console.log(data));
+                .then(data => {
+                    container.innerHTML += `<ol id="book-list"></ol>`; // create an empty list 
+                    data.forEach(elem => {
+                        let bookList = document.getElementById("book-list"); // load the book lsit we just created
+                        let bookString = `<li>${elem.title} - ${elem.author}</li> 
+                                          <button onclick="viewSingleBook(${elem.id})">View</button>`; // create a new li element containing info on our book
+                        bookList.innerHTML += bookString;
+                    })
+                }); 
+			}
+            showAllBooks();
+
+            function viewSingleBook(bookId) {
+                let container = document.getElementById("container");
+                container.innerHTML = "";
+                let req = "http://127.0.0.1:8000/api/book/" + bookId + "/";
+                fetch(req)
+                .then(response => response.json())
+                .then(data => {
+                    let bookString = `<p>Title: ${data.title}</p>
+                                      <p>Author: ${data.author}</p>
+                                      <p>Release Year: ${data.release_year}
+                                      <br>
+                                      <br>
+                                      <button onclick="showAllBooks()">Home</button>`;
+                    container.innerHTML += bookString;
+                });
+            }
+            //viewSingleBook(1);
+        </script>
+    </body>
+</html>
