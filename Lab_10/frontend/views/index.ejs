@@ -12,46 +12,32 @@
         <div id="container"></div>
         <br><br>
         <form id="book-form">
-            Title: <input type="text" id="title"> <br><br>
-            Author: <input type="text" id="author"> <br><br>
-            Genre: <input type="text" id="genre"> <br><br>
-            Release Year: <input type="int" id="release_year"> <br><br>
-            Quantity: <input type="int" id="quantity"> <br><br>
-            <input type="submit" value="Submit">
+            <label for="title">Title:</label>
+            <input id="title" type="text">
+            <br>
+            <label for="author">Author:</label>
+            <input id="author" type="text">
+            <br>
+            <label for="genre">Genre:</label>
+            <select id="genre">
+                <option value="adventure">Adventure</option>
+                <option value="scifi">Scifi</option>
+                <option value="comedy">Comedy</option>
+                <option value="biography">Biography</option>
+            </select>
+            <br>
+            <label for="release_year">Release year:</label>
+            <input id="release_year" type="number">
+            <br>
+            <label for="quantity">Quantity:</label>
+            <input id="quantity" type="number">
+            <br>
+            <button type="submit">Create new book</button>
         </form>
 
         <script>
-            document.getElementById("book-form").addEventListener("submit", onSubmit);
-
-            function onSubmit() {
-                let container = document.getElementById("container");
-                container = "";
-                let form = document.getElementById("book-form");
-                form.addEventListener("submit", (e) => {
-                    e.preventDefault();
-
-                    // load variables from the form and construct a JSON object for the data
-                    let newBook = {
-                        "Title": document.getElementById("title").value,
-                        "Author": document.getElementById("author").value,
-                        "Genre": document.getElementById("genre").value,
-                        "Release year": document.getElementById("release_year").value,
-                        "Quantity": document.getElementById("quantity").value
-                    }
-
-                    console.log(document.getElementById("title").value);
-                    console.log(document.getElementById("author").value);
-                    console.log(document.getElementById("genre").value);
-                    console.log(document.getElementById("release_year").value);
-                    console.log(document.getElementById("quantity").value);
-                    //container.innerHTML += JSON.stringify(newBook);
-                    //window.location.reload();
-                });
-            }
-            onSubmit();
-
-            function showAllBooks(){
-				let container = document.getElementById("container"); // load the container
+            function showAllBooks() {
+                let container = document.getElementById("container"); // load the container
 				container.innerHTML = ""; // delete the content already inside the container
 		        let req = "http://127.0.0.1:8000/api/book/"
 		        fetch(req) // make a request to this endpoint
@@ -62,12 +48,11 @@
                     data.forEach(elem => {
                         let bookList = document.getElementById("book-list"); // load the book lsit we just created
                         let bookString = `<li>${elem.title} - ${elem.author}</li> 
-                                          <button onclick="viewSingleBook(${elem.id})">View</button>`; // create a new li element containing info on our book
+                        <button onclick="viewSingleBook(${elem.id})">View</button>`; // create a new li element containing info on our book
                         bookList.innerHTML += bookString;
                     })
-                }); 
+                });
 			}
-            showAllBooks();
 
             function viewSingleBook(bookId) {
                 let container = document.getElementById("container");
@@ -77,15 +62,51 @@
                 .then(response => response.json())
                 .then(data => {
                     let bookString = `<p>Title: ${data.title}</p>
-                                      <p>Author: ${data.author}</p>
-                                      <p>Release Year: ${data.release_year}
-                                      <br>
-                                      <br>
-                                      <button onclick="showAllBooks()">Home</button>`;
-                    container.innerHTML += bookString;
-                });
+                    <p>Author: ${data.author}</p>
+                    <p>Release Year: ${data.release_year}
+                        <br>
+                        <br>
+                        <button onclick="showAllBooks()">Home</button>`;
+                        container.innerHTML += bookString;
+                    });
             }
-            //viewSingleBook(1);
+
+            let form = document.getElementById("book-form");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // load variables from the form and construct a JSON object.
+                let data = {
+                    title: document.getElementById("title").value,
+                    author: document.getElementById("author").value,
+                    genre: document.getElementById("genre").value,
+                    release_year: document.getElementById("release_year").value,
+                    quantity: document.getElementById("quantity").value,
+                };
+                //console.log(data);
+
+                // send as a POST request to http://127.0.0.1:8000/api/book/
+                fetch("http://127.0.0.1:8000/api/book/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Success", data);
+                    })
+                    .catch(error => {
+                        console.error("Error", error);
+                    });
+
+                // refresh the page
+                window.location.reload();
+            });
+
+            // calling function
+            showAllBooks();
         </script>
     </body>
 </html>
