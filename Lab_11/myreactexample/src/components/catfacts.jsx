@@ -6,7 +6,7 @@ function CatFacts() {
 
     useEffect(() => {
         fetch("https://cat-fact.herokuapp.com/facts")
-        .then(response=>response.json())
+        .then(response => response.json())
         .then(data => {
             setFacts(data.map(e => e.text)) // get the array of text out and set it as our state
             setIsLoaded(true);
