@@ -26,10 +26,10 @@ function Book({id}) {
         return (
             <ul>
                 <li><p>Title: {title}</p></li>
-                <li><p>Title: {author}</p></li>
-                <li><p>Title: {genre}</p></li>
-                <li><p>Title: {releaseYear}</p></li>
-                <li><p>Title: {quantity}</p></li>
+                <li><p>Author: {author}</p></li>
+                <li><p>Genre: {genre}</p></li>
+                <li><p>Release year: {releaseYear}</p></li>
+                <li><p>Quantity: {quantity}</p></li>
             </ul>
         )
     }
