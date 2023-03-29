@@ -7,15 +7,14 @@ const greetings = ["how are you",
     ]
 
 function HeadingComponent({name}) {
+    const sayHello = () =>{
+        let randomGreeting = greetings[Math.floor(Math.random() * greetings.length)]
+        return `Hello ${name}, ${randomGreeting}`;
+    }
     return (
-        <h1>{name}</h1>
-        //<h1>{sayHello()}</h1>
+        <h1>{sayHello()}</h1>
     )
 }
 
-const sayHello = () =>{
-    let randomGreeting = greetings[Math.floor(Math.random() * greetings.length)]
-    return `Hello ${name}, ${randomGreeting}`;
-}
 
 export default HeadingComponent;
