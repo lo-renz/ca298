@@ -1,29 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function Book({bookid}) {
+function Book({id}) {
     const [book, setBook] = useState([]);
 
-    useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/book/")
-        .then(response => response.json())
-        .then(books => {
-            const book = books.filter(single_book => single_book.id === bookid)
-            console.log(book);
-        })
-        .catch(err => console.log(err))
+    fetch("http://127.0.0.1:8000/api/book/")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.id)
     })
-
-    const displayBook = () => {
-        return (
-            book.map(elem =>
-                <li>{elem}</li>
-            )
-        )
-    }
+    .catch(err => console.log(err));
 
     return (
         <ul>
-            {displayBook()}
+            <li>
+            </li>
         </ul>
     )
 }

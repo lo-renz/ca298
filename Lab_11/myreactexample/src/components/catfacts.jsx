@@ -17,7 +17,7 @@ function CatFacts() {
     const displayFacts = () => {
         return (
             facts.map(elem => 
-                <li>{elem}</li>
+                <li key={elem._id}>{elem}</li>
             )
         )
     }

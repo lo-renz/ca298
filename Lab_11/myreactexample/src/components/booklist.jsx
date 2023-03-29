@@ -15,7 +15,7 @@ function BookList() {
     const displayBooks = () => {
         return (
             books.map(elem =>
-                <li>{elem}</li>
+                <li key={elem.id}>{elem}</li>
             )
         )
     }
