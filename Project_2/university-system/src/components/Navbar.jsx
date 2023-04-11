@@ -41,18 +41,8 @@ function MainNavbar() {
                                 All Modules
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item as={Link} to="/degree/COMBUS">
-                                COMBUS
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/degree/COMSCI">
-                                COMSCI
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/degree/DS">
-                                DS
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item as={Link} to="/degree/create">
-                                Create Degree
+                            <NavDropdown.Item as={Link} to="/module/create">
+                                Create Module
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

@@ -1,15 +1,15 @@
 import MainLayout from "../layout/MainLayout";
-
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function SingleDegree({degreeCode}) {
+function SingleDegree() {
+    const { degreeCode } = useParams();
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
     const [cohorts, setCohorts] = useState([]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/degree/" + degreeCode)
+        fetch(`http://127.0.0.1:8000/api/degree/${degreeCode}`)
         .then(response => response.json())
         .then(data => {
             setName(data.full_name)
@@ -17,7 +17,7 @@ function SingleDegree({degreeCode}) {
         })
         .catch(error => console.log(error))
 
-        fetch("http://127.0.0.1:8000/api/cohort/?degree=" + degreeCode)
+        fetch(`http://127.0.0.1:8000/api/cohort/?degree=${degreeCode}`)
         .then(response => response.json())
         .then(data => {
             setCohorts(data)

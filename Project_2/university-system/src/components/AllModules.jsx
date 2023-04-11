@@ -1,5 +1,6 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function AllModules() {
     const [modules, setModules] = useState([]);
@@ -10,52 +11,29 @@ function AllModules() {
         fetch("http://127.0.0.1:8000/api/module/")
             .then(response => response.json())
             .then(data => {
-                // For each module, make an additional HTTP request to retrieve the data for each cohort
-                const promises = data.map(module => {
-                    const cohortPromises = module.delivered_to.map(endpoint => fetch(endpoint));
-                    return Promise.all(cohortPromises)
-                        .then(responses => Promise.all(responses.map(res => res.json())))
-                        .then(cohorts => ({
-                            ...module,
-                            delivered_to: cohorts.map(cohort => ({ endpoint: cohort.url, name: cohort.name }))
-                        }));
-                })
-
-                Promise.all(promises)
-                    .then(modulesWithCohorts => {
-                        setModules(modulesWithCohorts);
-                        setIsLoaded(true);
-                    })
-                    .catch(error => console.log(error));
+                setModules(data)
+                setIsLoaded(true)
             })
             .catch(error => console.log(error));
     }, []);
 
     const displayModules = () => {
-        const filteredModules = modules.filter(module =>
+        const filteredModules = modules.filter(
+          (module) =>
             module.code.toLowerCase().includes(searchText.toLowerCase()) ||
             module.full_name.toLowerCase().includes(searchText.toLowerCase())
-        )
+        );
 
-        return (
-            filteredModules.map(elem =>
-                <div key={elem.code}>
-                    <h2>{elem.full_name}</h2>
-                    <p>Shortcode: {elem.code}</p>
-                    <p>CA Split: {elem.ca_split}</p>
-                    <p>Delivered to:</p>
-                    <ul>
-                        {elem.delivered_to.map(cohort =>
-                            <li key={cohort.endpoint}>
-                                <a href={cohort.endpoint}>{cohort.name}</a>
-                            </li>
-                        )}
-                    </ul>
-                    <hr />
-                </div>
-            )
-        )
-    }
+        return filteredModules.map((module) => (
+          <div key={module.code}>
+            <h2>{module.full_name} ({module.code})</h2>
+            <button>
+              <Link to={`/module/${module.code}`}>View Details</Link>
+            </button>
+            <hr />
+          </div>
+        ));
+    };
 
     if (isLoaded) {
         return (

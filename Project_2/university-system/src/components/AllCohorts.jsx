@@ -9,12 +9,12 @@ function AllCohorts() {
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/cohort/")
-        .then(response => response.json())
-        .then(data => {
-            setCohorts(data)
-            setIsLoaded(true)
-        })
-        .catch(error => console.log(error))
+            .then(response => response.json())
+            .then(data => {
+                setCohorts(data)
+                setIsLoaded(true)
+            })
+            .catch(error => console.log(error))
     }, []) // Add an empty dependency array to prevent infinite loops
 
     const displayCohorts = () => {
@@ -31,19 +31,24 @@ function AllCohorts() {
                     <Link to={`/cohort/${elem.id}`}>
                         <button>View Students</button>
                     </Link>
+                    <br />
+                    <Link to={`/cohort/${elem.id}/modules`}>
+                        <button>View Modules</button>
+                    </Link>
+                    <hr />
                 </div>
             )
         )
     }
 
-    if(isLoaded) {
+    if (isLoaded) {
         return (
             <MainLayout>
                 <input
-                type="text"
-                value={searchText}
-                placeholder="Search Cohort"
-                onChange={e => setSearchText(e.target.value)}
+                    type="text"
+                    value={searchText}
+                    placeholder="Search Cohort"
+                    onChange={e => setSearchText(e.target.value)}
                 />
                 <br />
                 <ul>

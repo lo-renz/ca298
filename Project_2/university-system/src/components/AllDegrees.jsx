@@ -1,6 +1,7 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link, Route, Routes } from "react-router-dom"; // Import Link and Route from react-router-dom
+import SingleDegree from "./SingleDegree";
 
 function AllDegrees() {
     const [degrees, setDegrees] = useState([]);
@@ -48,6 +49,9 @@ function AllDegrees() {
                 <ul>
                     {displayDegrees()}
                 </ul>
+                <Routes>
+                    <Route path="/degree/:shortCode" component={SingleDegree} />
+                </Routes>
             </MainLayout>
         )
     }

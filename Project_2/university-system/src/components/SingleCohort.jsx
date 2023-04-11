@@ -1,20 +1,22 @@
 import MainLayout from "../layout/MainLayout";
 
 import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
-function SingleCohort({cohortCode}) {
+function SingleCohort() {
+    const { cohortCode } = useParams();
     const [cohort, setCohort] = useState([]);
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/cohort/" + cohortCode)
+        fetch(`http://127.0.0.1:8000/api/cohort/${cohortCode}`)
         .then(response => response.json())
         .then(data => {
             setCohort(data)
         })
         .catch(error => console.log(error))
 
-        fetch("http://127.0.0.1:8000/api/student/?cohort=" + cohortCode)
+        fetch(`http://127.0.0.1:8000/api/student/?cohort=${cohortCode}`)
         .then(response => response.json())
         .then(data => {
             setStudents(data)
@@ -52,6 +54,7 @@ function SingleCohort({cohortCode}) {
                 {displayCohort()}
                 <br></br>
                 {displayStudents()}
+                <button><Link to="/degrees">Back</Link></button>
             </ul>
         </MainLayout>
     )
