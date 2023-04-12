@@ -25,6 +25,11 @@ import AllModules from './components/AllModules';
 import SingleModule from './components/SingleModule';
 import CreateModule from './components/CreateModule';
 
+// students
+import SingleStudent from './components/SingleStudent';
+import CreateStudent from './components/CreateStudent';
+import CreateGrade from './components/CreateGrade';
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -52,7 +57,7 @@ const router = createBrowserRouter([
     },
     {
         path: "cohort/:cohortCode/modules",
-        element: <CohortModules />
+        element: <CohortModules />,
     },
     {
         path: "cohort/create",
@@ -64,11 +69,23 @@ const router = createBrowserRouter([
     },
     {
         path: "module/:moduleCode",
-        element: <SingleModule />
+        element: <SingleModule />,
     },
     {
         path: "module/create",
         element: <CreateModule />,
+    },
+    {
+        path: "student",
+        element: <SingleStudent />,
+    },
+    {
+        path: "student/create",
+        element: <CreateStudent />
+    },
+    {
+        path: "student/grade/create",
+        element: <CreateGrade />,
     },
 ]);
 

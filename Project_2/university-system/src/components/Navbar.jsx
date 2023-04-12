@@ -45,6 +45,19 @@ function MainNavbar() {
                                 Create Module
                             </NavDropdown.Item>
                         </NavDropdown>
+
+                        <NavDropdown title="Students" id="basic-nav-dropdown">
+                            <NavDropdown.Item as={Link} to="/student">
+                                Search Student
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item as={Link} to="/student/create">
+                                Create Student
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/student/grade/create">
+                                Create Grade
+                            </NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

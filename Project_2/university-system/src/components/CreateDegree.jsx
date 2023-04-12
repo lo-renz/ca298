@@ -15,8 +15,8 @@ function CreateDegree() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                full_name: fullName,
-                shortcode: shortCode,
+                "full_name": fullName,
+                "shortcode": shortCode,
             }),
         });
         setFullName("");
