@@ -1,5 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 function CreateCohort() {
     const [cohortId, setCohortId] = useState("");
@@ -41,43 +45,71 @@ function CreateCohort() {
 
     const displayDegrees = () => {
         return (
-            <select value={degree} onChange={(e) => setDegree(e.target.value)}>
+            <Form.Select value={degree} onChange={(e) => setDegree(e.target.value)}>
                 <option value="">Select a degree</option>
                 {degrees.map((degree) => (
                     <option key={degree.shortcode} value={`http://127.0.0.1:8000/api/degree/${degree.shortcode}/`}>
                         {degree.full_name}
                     </option>
                 ))}
-            </select>
+            </Form.Select>
         );
     };
 
     return (
         <MainLayout>
-            <form onSubmit={handleSubmit}>
-                <label>ID</label>
-                <input
-                    type="text"
-                    value={cohortId}
-                    placeholder="Enter cohort ID"
-                    onChange={(e) => setCohortId(e.target.value)}
-                />
+            <Form onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridCohortId">
+                        <Form.Label>Cohort ID</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={cohortId}
+                            placeholder="Enter Cohort ID"
+                            onChange={(e) => setCohortId(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Year</label>
-                <input
-                    type="number"
-                    value={year}
-                    placeholder="Enter year"
-                    onChange={(e) => setYear(e.target.value)}
-                />
+                <Row>
+                    <Form.Group as={Col} controlId="formGridYear">
+                        <Form.Label>Cohort Year</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={year}
+                            placeholder="Enter Cohort Year"
+                            onChange={(e) => setYear(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Degree</label>
-                {displayDegrees()}
+                <Row>
+                    <Form.Group as={Col} controlId="formGridDegree">
 
-                <button type="submit">Create</button>
+                        <Form.Label>Degree</Form.Label>
+                        {displayDegrees()}
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
+                <br />
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
                 <div className="message">{message ? <p>{message}</p> : null}</div>
-            </form>
+            </Form>
         </MainLayout>
     );
 }

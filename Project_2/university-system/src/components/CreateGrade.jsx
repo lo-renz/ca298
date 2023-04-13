@@ -1,5 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 function CreateGrade() {
     const [module, setModule] = useState("");
@@ -47,59 +51,103 @@ function CreateGrade() {
 
     const displayCohorts = () => {
         return (
-            <select value={cohort} onChange={(e) => setCohort(e.target.value)}>
+            <Form.Select value={cohort} onChange={(e) => setCohort(e.target.value)}>
                 <option value="">Select a cohort</option>
                 {cohorts.map((cohort) => (
                     <option key={cohort.id} value={`http://127.0.0.1:8000/api/cohort/${cohort.id}/`}>
                         {cohort.id}
                     </option>
                 ))}
-            </select>
+            </Form.Select>
         );
     };
 
     return (
         <MainLayout>
-            <form onSubmit={handleSubmit}>
-                <label>Module</label>
-                <input
-                    type="text"
-                    value={module}
-                    placeholder="Enter module code"
-                    onChange={(e) => setModule(e.target.value)}
-                />
+            <Form onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridModule">
+                        <Form.Label>Module</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={module}
+                            placeholder="Enter Module Code"
+                            onChange={(e) => setModule(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>CA Mark</label>
-                <input
-                    type="number"
-                    value={caMark}
-                    placeholder="CA Mark"
-                    onChange={(e) => setCAMark(e.target.value)}
-                />
+                <Row>
+                    <Form.Group as={Col} controlId="formGridCaMark">
+                        <Form.Label>CA Mark</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={caMark}
+                            placeholder="Enter CA Mark"
+                            onChange={(e) => setCAMark(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Exam Mark</label>
-                <input
-                    type="number"
-                    value={examMark}
-                    placeholder="Exam Mark"
-                    onChange={(e) => setExamMark(e.target.value)}
-                />
+                <Row>
+                    <Form.Group as={Col} controlId="formGridExamMark">
+                        <Form.Label>Exam Mark</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={examMark}
+                            placeholder="Enter Exam Mark"
+                            onChange={(e) => setExamMark(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Cohort</label>
-                {displayCohorts()}
+                <Row>
+                    <Form.Group as={Col} controlId="formGridCohorts">
 
-                <label>Student</label>
-                <input
-                    type="text"
-                    value={student}
-                    placeholder="Enter student id"
-                    onChange={(e) => setStudent(e.target.value)}
-                />
+                        <Form.Label>Cohorts</Form.Label>
+                        {displayCohorts()}
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <button type="submit">Create</button>
+                <Row>
+                    <Form.Group as={Col} controlId="formGridStudent">
+                        <Form.Label>Student</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={student}
+                            placeholder="Enter Student ID"
+                            onChange={(e) => setStudent(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
+                <br />
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
                 <div className="message">{message ? <p>{message}</p> : null}</div>
-            </form>
+            </Form>
         </MainLayout>
     );
 }

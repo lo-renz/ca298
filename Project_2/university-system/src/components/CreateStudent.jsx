@@ -1,5 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 function CreateStudent() {
     const [studentId, setStudentId] = useState("");
@@ -45,52 +49,87 @@ function CreateStudent() {
 
     const displayCohorts = () => {
         return (
-            <select value={cohort} onChange={(e) => setCohort(e.target.value)}>
+            <Form.Select value={cohort} onChange={(e) => setCohort(e.target.value)}>
                 <option value="">Select a cohort</option>
                 {cohorts.map((cohort) => (
                     <option key={cohort.id} value={`http://127.0.0.1:8000/api/cohort/${cohort.id}/`}>
                         {cohort.id}
                     </option>
                 ))}
-            </select>
+            </Form.Select>
         );
     };
 
     return (
         <MainLayout>
-            <form onSubmit={handleSubmit}>
-                <label>Student ID</label>
-                <input
-                    type="text"
-                    value={studentId}
-                    placeholder="Enter student id"
-                    onChange={(e) => setStudentId(e.target.value)}
-                />
+            <Form onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridId">
+                        <Form.Label>Student ID</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={studentId}
+                            placeholder="Enter Student ID"
+                            onChange={(e) => setStudentId(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>First Name</label>
-                <input
-                    type="text"
-                    value={fName}
-                    placeholder="Enter first name"
-                    onChange={(e) => setFName(e.target.value)}
-                />
+                <Row>
+                    <Form.Group as={Col} controlId="formGridFName">
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={fName}
+                            placeholder="Enter First Name"
+                            onChange={(e) => setFName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Last Name</label>
-                <input
-                    type="text"
-                    value={lName}
-                    placeholder="Enter last name"
-                    onChange={(e) => setLName(e.target.value)}
-                />
+                <Row>
+                    <Form.Group as={Col} controlId="formGridLName">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={lName}
+                            placeholder="Enter Last Name"
+                            onChange={(e) => setLName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Cohort</label>
-                {displayCohorts()}
+                <Row>
+                    <Form.Group as={Col} controlId="formGridCohorts">
 
+                        <Form.Label>Cohorts</Form.Label>
+                        {displayCohorts()}
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <button type="submit">Create</button>
+                <br />
 
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
                 <div className="message">{message ? <p>{message}</p> : null}</div>
-            </form>
+            </Form>
         </MainLayout>
     );
 }

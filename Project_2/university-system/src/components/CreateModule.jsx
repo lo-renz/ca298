@@ -1,5 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 function CreateModule() {
     const [moduleCode, setModuleCode] = useState("");
@@ -45,51 +49,87 @@ function CreateModule() {
 
     const displayCohorts = () => {
         return (
-            <select value={deliveredTo} onChange={(e) => setDeliveredTo(e.target.value)}>
+            <Form.Select value={deliveredTo} onChange={(e) => setDeliveredTo(e.target.value)}>
                 <option value="">Select a cohort</option>
                 {cohorts.map((cohort) => (
                     <option key={cohort.id} value={`http://127.0.0.1:8000/api/cohort/${cohort.id}/`}>
                         {cohort.id}
                     </option>
                 ))}
-            </select>
+            </Form.Select>
         );
     };
 
     return (
         <MainLayout>
-            <form onSubmit={handleSubmit}>
-                <label>Code</label>
-                <input
-                    type="text"
-                    value={moduleCode}
-                    placeholder="Enter module code"
-                    onChange={(e) => setModuleCode(e.target.value)}
-                />
+            <Form onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridCode">
+                        <Form.Label>Module Code</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={moduleCode}
+                            placeholder="Enter Module Code"
+                            onChange={(e) => setModuleCode(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Full Name</label>
-                <input
-                    type="text"
-                    value={moduleName}
-                    placeholder="Enter module name"
-                    onChange={(e) => setModuleName(e.target.value)}
-                />
+                <Row>
+                    <Form.Group as={Col} controlId="formGridName">
+                        <Form.Label>Full Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={moduleName}
+                            placeholder="Enter Module Name"
+                            onChange={(e) => setModuleName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <label>Delivered To</label>
-                {displayCohorts()}
+                <Row>
+                    <Form.Group as={Col} controlId="formGridDeliveredTo">
 
-                <label>CA Split</label>
-                <input
-                    type="number"
-                    value={caSplit}
-                    placeholder="Enter CA split"
-                    onChange={(e) => setCaSplit(e.target.value)}
-                />
+                        <Form.Label>Delivered To</Form.Label>
+                        {displayCohorts()}
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <button type="submit">Create</button>
+                <Row>
+                    <Form.Group as={Col} controlId="formGridCaSplit">
+                        <Form.Label>CA Split</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={caSplit}
+                            placeholder="Enter CA Split"
+                            onChange={(e) => setCaSplit(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
+                <br />
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
                 <div className="message">{message ? <p>{message}</p> : null}</div>
-            </form>
+            </Form>
         </MainLayout>
     );
 }

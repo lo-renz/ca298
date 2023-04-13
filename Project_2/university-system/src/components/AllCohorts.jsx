@@ -1,6 +1,10 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function AllCohorts() {
     const [cohorts, setCohorts] = useState([]);
@@ -26,16 +30,24 @@ function AllCohorts() {
         return (
             filteredCohorts.map(cohort =>
                 <div key={cohort.id}>
-                    <h2>{cohort.name}</h2>
-                    <p>ID: {cohort.id}</p>
-                    <Link to={`/cohort/${cohort.id}`}>
-                        <button>View Students</button>
-                    </Link>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Header>{cohort.name}</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                ID: {cohort.id}
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+
                     <br />
-                    <Link to={`/cohort/${cohort.id}/modules`}>
-                        <button>View Modules</button>
-                    </Link>
-                    <hr />
+
+                    <Button variant="primary">
+                        <Link style={{ color: 'white', textDecoration: 'none' }} to={`/cohort/${cohort.id}`}>View Details</Link>
+                    </Button>{' '}
+                    <Button variant="primary">
+                        <Link style={{ color: 'white', textDecoration: 'none' }} to={`/cohort/${cohort.id}/modules`}>View Modules</Link>
+                    </Button>
+                    <br /><hr />
                 </div>
             )
         )
@@ -44,8 +56,8 @@ function AllCohorts() {
     if (isLoaded) {
         return (
             <MainLayout>
-                <input
-                    type="text"
+                <Form.Control
+                    type="search"
                     value={searchText}
                     placeholder="Search Cohort"
                     onChange={e => setSearchText(e.target.value)}

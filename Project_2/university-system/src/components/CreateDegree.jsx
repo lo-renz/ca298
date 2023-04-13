@@ -1,5 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 function CreateDegree() {
     const [fullName, setFullName] = useState("");
@@ -30,24 +34,46 @@ function CreateDegree() {
 
     return (
         <MainLayout>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={fullName}
-                    placeholder="Name"
-                    onChange={(e) => setFullName(e.target.value)}
-                />
-                <input
-                    type="text"
-                    value={shortCode}
-                    placeholder="Shortcode"
-                    onChange={(e) => setShortCode(e.target.value)}
-                />
+            <Form onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridName">
+                        <Form.Label>Degree Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={fullName}
+                            placeholder="Enter Degree Name"
+                            onChange={(e) => setFullName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
-                <button type="submit">Create</button>
+                <Row>
+                    <Form.Group as={Col} controlId="formGridShortcode">
+                        <Form.Label>Degree Shortcode</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={shortCode}
+                            placeholder="Enter Degree Shortcode"
+                            onChange={(e) => setShortCode(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="">
+                    </Form.Group>
+                </Row>
 
+                <br />
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
                 <div className="message">{message ? <p>{message}</p> : null}</div>
-            </form>
+            </Form>
         </MainLayout>
     );
 }

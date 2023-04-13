@@ -1,6 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 function CohortModules() {
     const { cohortCode } = useParams();
@@ -19,10 +22,17 @@ function CohortModules() {
 
     const displayModules = () => {
         return (
-            modules.map(elem =>
-                <div key={elem.code}>
-                    <h4>{elem.full_name} ({elem.code})</h4>
-                    <hr />
+            modules.map(module =>
+                <div key={module.code}>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Header>{module.full_name}</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                Code: {module.code}
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                    <br />
                 </div>
             )
         )
@@ -31,10 +41,12 @@ function CohortModules() {
     if (isLoaded) {
         return (
             <MainLayout>
-                <h2>Modules delivered to {cohortCode}</h2>
-                <ul>
-                    {displayModules()}
-                </ul>
+                <h3>Modules delivered to {cohortCode}</h3>
+                {displayModules()}
+
+                <Button variant="primary">
+                    <Link style={{ color: 'white', textDecoration: 'none' }} to="/cohorts">Back</Link>
+                </Button>
             </MainLayout>
         )
     } else {

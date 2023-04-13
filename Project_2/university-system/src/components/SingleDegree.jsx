@@ -1,6 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 function SingleDegree() {
     const { degreeCode } = useParams();
@@ -28,20 +31,35 @@ function SingleDegree() {
     const displayDegree = () => {
         return (
             <div>
-                <li>{name}</li>
-                <li>{code}</li>
+                <h3>Degree Information:</h3>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>{name}</Card.Header>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            Shortcode: {code}
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Card>
             </div>
         )
     }
 
     const displayCohorts = () => {
         return (
-            cohorts.map(elem =>
+            cohorts.map(cohort =>
                 <div>
-                    <li>{elem.id}</li>
-                    <li>{elem.year}</li>
-                    <li>{elem.name}</li>
-                    <br></br>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Header>{cohort.name}</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                ID: {cohort.id}
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                Year: {cohort.year}
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                    <br />
                 </div>
             )
         )
@@ -52,8 +70,12 @@ function SingleDegree() {
             <ul>
                 {displayDegree()}
                 <br></br>
+                <h4>Cohorts:</h4>
                 {displayCohorts()}
-                <button><Link to="/degrees">Back</Link></button>
+
+                <Button variant="primary">
+                    <Link style={{ color: 'white', textDecoration: 'none' }} to="/degrees">Back</Link>
+                </Button>
             </ul>
         </MainLayout>
     )

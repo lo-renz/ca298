@@ -1,6 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 function SingleModule() {
     const { moduleCode } = useParams();
@@ -30,14 +33,36 @@ function SingleModule() {
     if (isLoaded) {
         return (
             <MainLayout>
-                <h2>{module.full_name} ({module.code})</h2>
-                <p>CA Split: {module.ca_split}</p>
-                <h3>Cohorts:</h3>
-                <ul>
-                    {cohorts.map(cohort => (
-                        <li key={cohort.code}>{cohort.name}</li>
-                    ))}
-                </ul>
+                <h3>Module Information:</h3>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>{module.full_name}</Card.Header>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            Code: {module.code}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            CA Split: {module.ca_split}
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Card>
+
+                <br />
+
+                <h4>Cohorts:</h4>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>{module.full_name}</Card.Header>
+                    <ListGroup variant="flush">
+                        {cohorts.map(cohort => (
+                            <ListGroup.Item>
+                                {cohort.name}
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                </Card>
+                <br />
+                <Button variant="primary">
+                    <Link style={{ color: 'white', textDecoration: 'none' }} to="/modules">Back</Link>
+                </Button>
             </MainLayout>
         )
     } else {

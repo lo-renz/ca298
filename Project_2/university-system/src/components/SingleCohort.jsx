@@ -1,6 +1,9 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 function SingleCohort() {
     const { cohortCode } = useParams();
@@ -26,22 +29,38 @@ function SingleCohort() {
     const displayCohort = () => {
         return (
             <div>
-                <li>{cohort.id}</li>
-                <li>{cohort.year}</li>
-                <li>{cohort.name}</li>
+                <h3>Cohort Information:</h3>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>{cohort.name}</Card.Header>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            ID: {cohort.id}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            Year: {cohort.year}
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Card>
             </div>
         )
     }
 
     const displayStudents = () => {
         return (
-            students.map(elem =>
+            students.map(student =>
                 <div>
-                    <li>{elem.student_id}</li>
-                    <li>{elem.first_name}</li>
-                    <li>{elem.last_name}</li>
-                    <li>{elem.email}</li>
-                    <br></br>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Header>{student.first_name} {student.last_name}</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                Student ID: {student.student_id}
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                Email: {student.email}
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                    <br />
                 </div>
             )
         )
@@ -52,8 +71,11 @@ function SingleCohort() {
             <ul>
                 {displayCohort()}
                 <br></br>
+                <h3>Students:</h3>
                 {displayStudents()}
-                <button><Link to="/degrees">Back</Link></button>
+                <Button variant="primary">
+                    <Link style={{ color: 'white', textDecoration: 'none' }} to="/cohorts">Back</Link>
+                </Button>
             </ul>
         </MainLayout>
     )

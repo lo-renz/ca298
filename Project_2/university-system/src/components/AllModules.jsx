@@ -1,6 +1,10 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function AllModules() {
     const [modules, setModules] = useState([]);
@@ -25,11 +29,21 @@ function AllModules() {
 
         return filteredModules.map(module => (
             <div key={module.code}>
-                <h2>{module.full_name} ({module.code})</h2>
-                <button>
-                    <Link to={`/module/${module.code}`}>View Details</Link>
-                </button>
-                <hr />
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>{module.full_name}</Card.Header>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            Code: {module.code}
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Card>
+
+                <br />
+
+                <Button variant="primary">
+                    <Link style={{ color: 'white', textDecoration: 'none' }} to={`/module/${module.code}`}>View Details</Link>
+                </Button>
+                <br /> <hr />
             </div>
         ));
     };
@@ -37,8 +51,8 @@ function AllModules() {
     if (isLoaded) {
         return (
             <MainLayout>
-                <input
-                    type="text"
+                <Form.Control
+                    type="search"
                     value={searchText}
                     placeholder="Search Module"
                     onChange={e => setSearchText(e.target.value)}

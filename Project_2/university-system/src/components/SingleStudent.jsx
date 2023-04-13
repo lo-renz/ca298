@@ -1,5 +1,10 @@
 import MainLayout from "../layout/MainLayout";
 import { useState } from "react";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 function SingleStudent() {
     const [student, setStudent] = useState("");
@@ -35,10 +40,17 @@ function SingleStudent() {
     const displayInfo = () => {
         return (
             <div>
-                <h2>Modules:</h2>
-                <ul>
-                    {modules.map(item => <li key={item.id}><b>{item.module.split("/")[5]}</b> Grade: {item.total_grade}</li>)}
-                </ul>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>Modules:</Card.Header>
+                    <ListGroup variant="flush">
+                        {modules.map(item =>
+                            <ListGroup.Item>
+                                <b>{item.module.split("/")[5]}</b><br />
+                                Grade: {item.total_grade}
+                            </ListGroup.Item>
+                        )}
+                    </ListGroup>
+                </Card>
             </div>
         );
     }
@@ -46,14 +58,35 @@ function SingleStudent() {
     if (isLoaded) {
         return (
             <MainLayout>
-                <h2>Enter student ID:</h2>
-                <input type="text" value={studentId} onChange={handleInputChange} />
-                <button onClick={handleButtonClick}>Submit</button>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1">ID:</InputGroup.Text>
+                    <Form.Control
+                        type="text"
+                        value={studentId}
+                        onChange={handleInputChange}
+                        placeholder="Enter Student ID"
+                        aria-label="Enter Student ID"
+                        aria-describedby="basic-addon2"
+                    />
+                    <Button style={{ outline: "none" }} variant="secondary" onClick={handleButtonClick}>Submit</Button>
+                </InputGroup>
+                <br />
 
-                <h2>{student.first_name} {student.last_name}</h2>
-                <ul>
-                    <li>ID: {student.student_id}</li>
-                </ul>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>{student.first_name} {student.last_name}</Card.Header>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            ID: {student.student_id}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            Cohort: {student.cohort.split("/")[5]}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            Email: {student.email}
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Card>
+                <br />
 
                 {displayInfo()}
             </MainLayout>
@@ -61,9 +94,18 @@ function SingleStudent() {
     } else {
         return (
             <MainLayout>
-                <h2>Enter student ID:</h2>
-                <input type="text" value={studentId} onChange={handleInputChange} />
-                <button onClick={handleButtonClick}>Submit</button>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1">ID:</InputGroup.Text>
+                    <Form.Control
+                        type="text"
+                        value={studentId}
+                        onChange={handleInputChange}
+                        placeholder="Enter Student ID"
+                        aria-label="Enter Student ID"
+                        aria-describedby="basic-addon2"
+                    />
+                    <Button style={{ outline: "none" }} variant="secondary" onClick={handleButtonClick}>Submit</Button>
+                </InputGroup>
             </MainLayout>
         );
     }
