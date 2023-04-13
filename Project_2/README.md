@@ -1,3 +1,8 @@
-#Stuff used:
-Using routes to display the different pages
-Installing bootstrap and boostrap-react for styling
+# University Registratino App
+
+## Downloads:
+I downloaded React Bootstrap to style the pages.
+The command I used was
+```
+npm install react-bootstrap bootstrap
+```
