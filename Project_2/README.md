@@ -1,4 +1,4 @@
-# University Registratino App
+# University Registration App
 
 ## Downloads:
 I downloaded React Bootstrap to style the pages.
