@@ -1,5 +1,5 @@
 import MainLayout from "../layout/MainLayout";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function SingleStudent() {
     const [student, setStudent] = useState("");
@@ -13,13 +13,13 @@ function SingleStudent() {
 
     const handleButtonClick = () => {
         fetch(`http://127.0.0.1:8000/api/student/${studentId}`)
-            .then((response) => response.json())
-            .then((data) => {
+            .then(response => response.json())
+            .then(data => {
                 setStudent(data);
                 setIsLoaded(true);
                 fetchGrades();
             })
-            .catch((error) => console.log(error));
+            .catch(error => console.log(error));
     };
 
     const fetchGrades = () => {

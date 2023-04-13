@@ -40,7 +40,7 @@ function CreateDegree() {
                 <input
                     type="text"
                     value={shortCode}
-                    placeholder="Email"
+                    placeholder="Shortcode"
                     onChange={(e) => setShortCode(e.target.value)}
                 />
 

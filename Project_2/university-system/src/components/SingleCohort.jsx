@@ -1,5 +1,4 @@
 import MainLayout from "../layout/MainLayout";
-
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -10,18 +9,18 @@ function SingleCohort() {
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/cohort/${cohortCode}`)
-        .then(response => response.json())
-        .then(data => {
-            setCohort(data)
-        })
-        .catch(error => console.log(error))
+            .then(response => response.json())
+            .then(data => {
+                setCohort(data)
+            })
+            .catch(error => console.log(error))
 
         fetch(`http://127.0.0.1:8000/api/student/?cohort=${cohortCode}`)
-        .then(response => response.json())
-        .then(data => {
-            setStudents(data)
-        })
-        .catch(error => console.log(error))
+            .then(response => response.json())
+            .then(data => {
+                setStudents(data)
+            })
+            .catch(error => console.log(error))
     })
 
     const displayCohort = () => {

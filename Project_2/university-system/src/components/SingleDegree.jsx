@@ -10,20 +10,20 @@ function SingleDegree() {
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/degree/${degreeCode}`)
-        .then(response => response.json())
-        .then(data => {
-            setName(data.full_name)
-            setCode(data.shortcode)
-        })
-        .catch(error => console.log(error))
+            .then(response => response.json())
+            .then(data => {
+                setName(data.full_name)
+                setCode(data.shortcode)
+            })
+            .catch(error => console.log(error))
 
         fetch(`http://127.0.0.1:8000/api/cohort/?degree=${degreeCode}`)
-        .then(response => response.json())
-        .then(data => {
-            setCohorts(data)
-        })
-        .catch(error => console.log(error))
-    })
+            .then(response => response.json())
+            .then(data => {
+                setCohorts(data)
+            })
+            .catch(error => console.log(error))
+    });
 
     const displayDegree = () => {
         return (

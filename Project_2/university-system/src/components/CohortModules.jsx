@@ -15,13 +15,13 @@ function CohortModules() {
                 setIsLoaded(true)
             })
             .catch(error => console.log(error));
-    }, []);
+    });
 
     const displayModules = () => {
         return (
             modules.map(elem =>
                 <div key={elem.code}>
-                    <h2>{elem.full_name} ({elem.code})</h2>
+                    <h4>{elem.full_name} ({elem.code})</h4>
                     <hr />
                 </div>
             )

@@ -24,8 +24,8 @@ function SingleModule() {
                     .then(cohortsData => setCohorts(cohortsData))
                     .catch(error => console.log(error));
             })
-            .catch(error => console.log(error));
-    }, []);
+            .catch(error => console.log(error))
+    });
 
     if (isLoaded) {
         return (
