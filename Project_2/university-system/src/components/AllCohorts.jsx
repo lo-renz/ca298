@@ -15,7 +15,7 @@ function AllCohorts() {
                 setIsLoaded(true)
             })
             .catch(error => console.log(error))
-    }, []) // Add an empty dependency array to prevent infinite loops
+    }, [])
 
     const displayCohorts = () => {
         const filteredCohorts = cohorts.filter(cohort =>
@@ -24,15 +24,15 @@ function AllCohorts() {
         )
 
         return (
-            filteredCohorts.map(elem =>
-                <div key={elem.id}>
-                    <h2>{elem.name}</h2>
-                    <p>ID: {elem.id}</p>
-                    <Link to={`/cohort/${elem.id}`}>
+            filteredCohorts.map(cohort =>
+                <div key={cohort.id}>
+                    <h2>{cohort.name}</h2>
+                    <p>ID: {cohort.id}</p>
+                    <Link to={`/cohort/${cohort.id}`}>
                         <button>View Students</button>
                     </Link>
                     <br />
-                    <Link to={`/cohort/${elem.id}/modules`}>
+                    <Link to={`/cohort/${cohort.id}/modules`}>
                         <button>View Modules</button>
                     </Link>
                     <hr />

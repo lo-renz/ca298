@@ -14,24 +14,23 @@ function AllModules() {
                 setModules(data)
                 setIsLoaded(true)
             })
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
     }, []);
 
     const displayModules = () => {
-        const filteredModules = modules.filter(
-          (module) =>
+        const filteredModules = modules.filter(module =>
             module.code.toLowerCase().includes(searchText.toLowerCase()) ||
             module.full_name.toLowerCase().includes(searchText.toLowerCase())
         );
 
-        return filteredModules.map((module) => (
-          <div key={module.code}>
-            <h2>{module.full_name} ({module.code})</h2>
-            <button>
-              <Link to={`/module/${module.code}`}>View Details</Link>
-            </button>
-            <hr />
-          </div>
+        return filteredModules.map(module => (
+            <div key={module.code}>
+                <h2>{module.full_name} ({module.code})</h2>
+                <button>
+                    <Link to={`/module/${module.code}`}>View Details</Link>
+                </button>
+                <hr />
+            </div>
         ));
     };
 
@@ -39,10 +38,10 @@ function AllModules() {
         return (
             <MainLayout>
                 <input
-                type="text"
-                value={searchText}
-                placeholder="Search Module"
-                onChange={e => setSearchText(e.target.value)}
+                    type="text"
+                    value={searchText}
+                    placeholder="Search Module"
+                    onChange={e => setSearchText(e.target.value)}
                 />
                 <br />
                 <ul>

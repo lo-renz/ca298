@@ -13,7 +13,7 @@ function CreateStudent() {
         fetch("http://127.0.0.1:8000/api/cohort/")
             .then((response) => response.json())
             .then((data) => setCohorts(data))
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error))
     }, []);
 
     let handleSubmit = async (e) => {

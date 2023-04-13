@@ -1,5 +1,4 @@
 import MainLayout from "../layout/MainLayout";
-
 import { useState } from "react";
 
 function CreateDegree() {
@@ -9,7 +8,8 @@ function CreateDegree() {
 
     let handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch("http://127.0.0.1:8000/api/degree/", {
+
+        const response = await fetch("http://127.0.0.1:8000/api/degree/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -19,6 +19,10 @@ function CreateDegree() {
                 "shortcode": shortCode,
             }),
         });
+
+        const data = await response.json();
+        console.log(data);
+
         setFullName("");
         setShortCode("");
         setMessage("Degree created successfully");

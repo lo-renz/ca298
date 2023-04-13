@@ -13,23 +13,23 @@ function CreateModule() {
         fetch("http://127.0.0.1:8000/api/cohort/")
             .then((response) => response.json())
             .then((data) => setCohorts(data))
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error))
     }, []);
 
     let handleSubmit = async (e) => {
         e.preventDefault();
 
         const response = await fetch("http://127.0.0.1:8000/api/module/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            "code": moduleCode,
-            "full_name": moduleName,
-            "delivered_to": [deliveredTo],
-            "ca_split": caSplit,
-          }),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "code": moduleCode,
+                "full_name": moduleName,
+                "delivered_to": [deliveredTo],
+                "ca_split": caSplit,
+            }),
         });
 
         const data = await response.json();
@@ -40,7 +40,7 @@ function CreateModule() {
         setDeliveredTo([]);
         setCaSplit("");
         setMessage("Module created successfully");
-      };
+    };
 
 
     const displayCohorts = () => {

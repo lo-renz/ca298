@@ -101,7 +101,7 @@ function CreateGrade() {
                 <div className="message">{message ? <p>{message}</p> : null}</div>
             </form>
         </MainLayout>
-    )
+    );
 }
 
 export default CreateGrade;

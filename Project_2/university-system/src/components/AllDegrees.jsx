@@ -1,6 +1,6 @@
 import MainLayout from "../layout/MainLayout";
 import { useState, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom"; // Import Link and Route from react-router-dom
+import { Link, Route, Routes } from "react-router-dom";
 import SingleDegree from "./SingleDegree";
 
 function AllDegrees() {
@@ -10,13 +10,13 @@ function AllDegrees() {
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/degree/")
-        .then(response => response.json())
-        .then(data => {
-            setDegrees(data)
-            setIsLoaded(true)
-        })
-        .catch(error => console.log(error))
-    }, []) // Add an empty dependency array to prevent infinite loops
+            .then(response => response.json())
+            .then(data => {
+                setDegrees(data)
+                setIsLoaded(true)
+            })
+            .catch(error => console.log(error))
+    }, [])
 
     const displayDegrees = () => {
         const filteredDegrees = degrees.filter(degree =>
@@ -25,25 +25,25 @@ function AllDegrees() {
         )
 
         return (
-            filteredDegrees.map(elem =>
-                <div key={elem.shortcode}>
-                    <h2>{elem.full_name}</h2>
-                    <p>Shortcode: {elem.shortcode}</p>
-                    <Link to={`/degree/${elem.shortcode}`}><button>Show Details</button></Link>
+            filteredDegrees.map(degree =>
+                <div key={degree.shortcode}>
+                    <h2>{degree.full_name}</h2>
+                    <p>Shortcode: {degree.shortcode}</p>
+                    <Link to={`/degree/${degree.shortcode}`}><button>Show Details</button></Link>
                     <hr />
                 </div>
             )
         )
     }
 
-    if(isLoaded) {
+    if (isLoaded) {
         return (
             <MainLayout>
                 <input
-                type="text"
-                value={searchText}
-                placeholder="Search Degree"
-                onChange={e => setSearchText(e.target.value)}
+                    type="text"
+                    value={searchText}
+                    placeholder="Search Degree"
+                    onChange={e => setSearchText(e.target.value)}
                 />
                 <br />
                 <ul>
