@@ -27,6 +27,8 @@ function App() {
                     <img
                         className="d-block w-100"
                         src="/combus.webp"
+                        width="800"
+                        height="900"
                         alt="first slide"
                     />
                     <Carousel.Caption>
@@ -43,6 +45,8 @@ function App() {
                     <img
                         classname="d-block w-100"
                         src="/comsci.webp"
+                        width="1500"
+                        height="900"
                         alt="second slide"
                     />
                     <Carousel.Caption>
@@ -59,6 +63,8 @@ function App() {
                     <img
                         className="d-block w-100"
                         src="/ds.webp"
+                        width="800"
+                        height="900"
                         alt="Third slide"
                     />
                     <Carousel.Caption>
