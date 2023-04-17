@@ -1,7 +1,7 @@
 import './App.css';
 import MainLayout from './layout/MainLayout';
 
-function App() {
+function Index() {
     return (
         <MainLayout>
             <div>Home Page</div>
