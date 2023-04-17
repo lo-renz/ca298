@@ -5,7 +5,7 @@ function MainLayout({children}) {
     return (
         <div>
             <MainNavbar></MainNavbar>
-            <hr></hr>
+            <br />
             <div>{children}</div>
         </div>
     )

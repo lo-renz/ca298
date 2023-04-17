@@ -11,7 +11,14 @@ function MainNavbar() {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand as={Link} to="/">Registration</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" sticky="top">
+                    <img
+                    src="/academic_cap.png"
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                    alt="" />
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -66,3 +73,5 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
+// Academic cap: https://commons.wikimedia.org/wiki/File:Font_Awesome_5_solid_graduation-cap.svg
