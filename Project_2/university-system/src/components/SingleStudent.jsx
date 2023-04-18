@@ -68,7 +68,7 @@ function SingleStudent() {
                         aria-label="Enter Student ID"
                         aria-describedby="basic-addon2"
                     />
-                    <Button style={{ outline: "none" }} variant="secondary" onClick={handleButtonClick}>Submit</Button>
+                    <Button style={{ outline: "none" }} variant="secondary" onClick={handleButtonClick}>Search</Button>
                 </InputGroup>
                 <br />
 
@@ -104,7 +104,7 @@ function SingleStudent() {
                         aria-label="Enter Student ID"
                         aria-describedby="basic-addon2"
                     />
-                    <Button style={{ outline: "none" }} variant="secondary" onClick={handleButtonClick}>Submit</Button>
+                    <Button style={{ outline: "none" }} variant="secondary" onClick={handleButtonClick}>Search</Button>
                 </InputGroup>
             </MainLayout>
         );
